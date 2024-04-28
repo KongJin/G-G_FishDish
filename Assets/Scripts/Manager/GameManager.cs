@@ -1,9 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager 
 {
+    static GameManager instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = new GameManager();
+            return instance;
+        }
+    }
+  
     private DataManager dataManager;
     private ResourcesManager resourcesManager;
     private SoundManager soundManager;
@@ -12,15 +24,6 @@ public class GameManager : MonoBehaviour
     public ResourcesManager Resources { get { return resourcesManager; } }
     public SoundManager Sound { get { return soundManager; } }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Common Global { get { return Global; } }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
