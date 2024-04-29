@@ -5,25 +5,24 @@ using UnityEngine;
 
 public class GameManager 
 {
-    static GameManager instance;
+    static GameManager instance = new ();
     public static GameManager Instance
     {
         get
         {
-            if (instance == null)
-                instance = new GameManager();
             return instance;
         }
     }
-  
-    private DataManager dataManager;
-    private ResourcesManager resourcesManager;
-    private SoundManager soundManager;
+    
+    private DataManager dataManager = new ();
+    private ResourcesManager resourcesManager = new();
+    private SoundManager soundManager = new();
+    private Common global = new();
 
     public DataManager Data { get { return dataManager; } }
     public ResourcesManager Resources { get { return resourcesManager; } }
     public SoundManager Sound { get { return soundManager; } }
 
-    public Common Global { get { return Global; } }
+    public Common Global { get { return global; } }
 
 }

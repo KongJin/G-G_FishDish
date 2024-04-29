@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IMoveAble
 {
-    void Move();
+    void Move(Vector3 direction);
 }
 
 public interface IEatAble
@@ -15,25 +15,25 @@ public interface IEatAble
 
 public class Fish : MonoBehaviour, IMoveAble, IEatAble
 {
-    ILevelUpAble _spec;
-    int _point;
-    Vector3 _Direction;
+    ILevelUpAble _spec = new Spec();
+    int point;
+    Vector3 direction;
 
     // Start is called before the first frame update
     public virtual void Init(int point )
     {
-        _point = point;
-        
-        _spec.LevelUp(1, _point);
-        int height = Random.Range(0, 780);
+        this.point = point;
+
+        _spec.LevelUp(1, this.point);
+        int height = Random.Range(0, GameManager.Instance.Global.screenHeight);
         if (Random.Range(0, 1) > 0)
         {
-            _Direction =  Vector3.left ;
-            transform.position = (Vector3.right * 320 )+(Vector3.up*height) ;
+            direction =  Vector3.left ;
+            transform.position = (Vector3.right * GameManager.Instance.Global.screenWide )+(Vector3.up*height) ;
         }
         else
         {
-            _Direction = Vector3.right;
+            direction = Vector3.right;
             transform.position = Vector3.up * height;
         }
         gameObject.SetActive(true);
@@ -50,7 +50,7 @@ public class Fish : MonoBehaviour, IMoveAble, IEatAble
         
     }
 
-    public void Move()
+    public void Move(Vector3 direction)
     {
         
     }

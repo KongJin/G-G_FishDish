@@ -12,5 +12,6 @@ public class Common
         SWORD,
 
     }
-
+    public int screenWide = 360;
+    public int screenHeight = 640;
 }
