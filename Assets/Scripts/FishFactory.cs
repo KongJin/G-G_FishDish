@@ -21,17 +21,19 @@ public class FishFactory : MonoBehaviour, IFishPool
 
     public Fish Get()
     {
-        Fish fish;
-        if (fishQueue.TryPeek(out fish))
+        Fish _fish;
+        if (fishQueue.TryPeek(out _fish))
         {
-            fish = fishQueue.Dequeue();
+            _fish = fishQueue.Dequeue();
         }else
         {
-            fish = Instantiate(this.fish, transform);
-            fish.gameObject.SetActive(false);
+            _fish = Instantiate(fish, Vector3.zero, Quaternion.identity, transform);//
+
+            _fish.transform.SetParent(transform, false);
+            _fish.transform.localPosition = Vector3.zero;
         }
         
-        return fish ;
+        return _fish ;
     }
 
 
@@ -50,7 +52,7 @@ public class FishFactory : MonoBehaviour, IFishPool
         for (int i =0; i< initCount; i++)
         {
             Fish fish = Get();
-            fish.Init(initCount);
+            fish.Init(initCount, this);
         }
     }
 
@@ -60,13 +62,13 @@ public class FishFactory : MonoBehaviour, IFishPool
     void Update()
     {
         remainTime-=Time.deltaTime;
-        if(remainTime<0)
+        if(remainTime>0)
         {
             return;
         }
         
         remainTime = Random.Range(0.2f, MaxCreationInterval);
         Fish fish  =  Get();
-        fish.Init(_curPoint+ initCount);
+        fish.Init(_curPoint+ initCount,this );
     }
 }

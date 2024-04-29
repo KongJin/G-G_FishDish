@@ -16,25 +16,29 @@ public interface IEatAble
 public class Fish : MonoBehaviour, IMoveAble, IEatAble
 {
     ILevelUpAble _spec = new Spec();
-    int point;
     Vector3 direction;
+    [SerializeField]
+    RectTransform rectTransform;
+    IFishPool pool;
 
     // Start is called before the first frame update
-    public virtual void Init(int point )
+    public virtual void Init(int point , IFishPool _pool)
     {
-        this.point = point;
+        pool = _pool;
 
-        _spec.LevelUp(1, this.point);
+        _spec.LevelUp(1, point);
         int height = Random.Range(0, GameManager.Instance.Global.screenHeight);
-        if (Random.Range(0, 1) > 0)
+        if (Random.Range(0, 2) > 0)
         {
             direction =  Vector3.left ;
-            transform.position = (Vector3.right * GameManager.Instance.Global.screenWide )+(Vector3.up*height) ;
+           rectTransform.localPosition = (Vector3.right * GameManager.Instance.Global.screenWide )+(Vector3.up*height) ;
+            transform.eulerAngles = new Vector3( 0, 180, 0 );
         }
         else
         {
             direction = Vector3.right;
-            transform.position = Vector3.up * height;
+           rectTransform.localPosition =  Vector3.up * height;
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
         gameObject.SetActive(true);
     }
@@ -47,12 +51,16 @@ public class Fish : MonoBehaviour, IMoveAble, IEatAble
     // Update is called once per frame
     void Update()
     {
-        
+        Move(direction);
     }
 
     public void Move(Vector3 direction)
     {
-        
+        rectTransform.position += direction*Time.deltaTime;
+        if(rectTransform.localPosition.x <0|| rectTransform.localPosition.x> GameManager.Instance.Global.screenWide)
+        {
+            pool.Release(this);
+        }
     }
 
     public void Eat(int size)
