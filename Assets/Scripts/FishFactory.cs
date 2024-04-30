@@ -65,11 +65,11 @@ public class FishFactory : MonoBehaviour, IFishPool
     void Start()
     {
         
-        for (int i =0; i< initCount; i++)
-        {
-            Fish fish = Get();
-            fish.Init( GetRandomPosition(), this, new RandomSpec(_curPoint + initCount, fish.GetComponent<RectTransform>()));
-        }
+        //for (int i =0; i< initCount; i++)
+        //{
+        //    Fish fish = Get();
+        //    fish.Init( GetRandomPosition(), this, new RandomSpec(_curPoint + initCount, fish.GetComponent<RectTransform>()));
+        //}
     }
 
     // Update is called once per frame

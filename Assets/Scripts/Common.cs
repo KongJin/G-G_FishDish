@@ -10,7 +10,7 @@ public class Common
         NEON,
         CORI,
         SWORD,
-
+        MAX
     }
     public int screenWide = 360;
     public int screenHeight = 640;

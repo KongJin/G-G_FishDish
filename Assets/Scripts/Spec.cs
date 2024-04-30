@@ -10,7 +10,6 @@ public abstract class Spec
     protected float size;
     protected float speed;
     protected RectTransform rectTransform;
-    private float point;
 
     public abstract void LevelUp(float _point);
     protected Spec(float _point, RectTransform _rectTransform)
@@ -30,7 +29,7 @@ public class RandomSpec : Spec
 
         size = Random.Range(GameManager.Instance.Global.minFloat, _point);
         speed = Random.Range(GameManager.Instance.Global.minFloat, _point);
-        rectTransform.localScale  *= size;
+        rectTransform.localScale  = new Vector3(1,1,1)* size;
     }
 
     public RandomSpec(float _point , RectTransform rectTransform) :base(_point, rectTransform) {}

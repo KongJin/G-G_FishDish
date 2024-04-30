@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishB : MonoBehaviour
+public class FishE : PlayableFish
 {
 
     void Start()
@@ -14,5 +14,11 @@ public class FishB : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override bool UseSkill(float cooldown)
+    {
+        // 금붕어 스킬 구현
+        return true;
     }
 }
