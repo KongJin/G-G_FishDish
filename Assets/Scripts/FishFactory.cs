@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public interface IFishPool
 {
@@ -43,6 +42,23 @@ public class FishFactory : MonoBehaviour, IFishPool
         fishQueue.Enqueue(element);
     }
 
+    private Vector3 GetRandomPosition()
+    {
+        int height = Random.Range(0, GameManager.Instance.Global.screenHeight);
+        Vector3 position = Vector3.zero;
+
+        if (Random.Range(0, 2) > 0)
+        {
+            position = (Vector3.right * GameManager.Instance.Global.screenWide) + (Vector3.up * height);
+        }
+        else
+        {
+            position = Vector3.up * height;
+        }
+        return position;
+    }
+ 
+
     // Start is called before the first frame update
 
     int initCount = 10;
@@ -52,7 +68,7 @@ public class FishFactory : MonoBehaviour, IFishPool
         for (int i =0; i< initCount; i++)
         {
             Fish fish = Get();
-            fish.Init(initCount, this);
+            fish.Init( GetRandomPosition(), this, new RandomSpec(_curPoint + initCount, fish.GetComponent<RectTransform>()));
         }
     }
 
@@ -69,6 +85,6 @@ public class FishFactory : MonoBehaviour, IFishPool
         
         remainTime = Random.Range(0.2f, MaxCreationInterval);
         Fish fish  =  Get();
-        fish.Init(_curPoint+ initCount,this );
+        fish.Init( GetRandomPosition(), this, new RandomSpec(_curPoint + initCount, fish.GetComponent<RectTransform>()));
     }
 }
