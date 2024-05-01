@@ -44,16 +44,16 @@ public class FishFactory : MonoBehaviour, IFishPool
 
     private Vector3 GetRandomPosition()
     {
-        int height = Random.Range(-GameManager.Instance.Global.screenHeight, GameManager.Instance.Global.screenHeight);
+        int height = Random.Range(-GameManager.Instance.global.screenHeight, GameManager.Instance.global.screenHeight);
         Vector3 position = Vector3.zero;
 
         if (Random.Range(0, 2) > 0)
         {
-            position = (Vector3.right * GameManager.Instance.Global.screenWide) + (Vector3.up * height);
+            position = (Vector3.right * GameManager.Instance.global.screenWide) + (Vector3.up * height);
         }
         else
         {
-            position = (Vector3.left * GameManager.Instance.Global.screenWide) + Vector3.up * height;
+            position = (Vector3.left * GameManager.Instance.global.screenWide) + Vector3.up * height;
         }
         return position;
     }

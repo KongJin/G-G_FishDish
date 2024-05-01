@@ -30,14 +30,14 @@ public class ShowWindow : MonoBehaviour, IFishPool
         remainMove +=  distInterval * direction;
         
         startTime = Time.time;
-        description.text = fishes[curIndex].GetFishDescription();
+        description.text = fishes[curIndex].fishData.fishDescription;
     }
 
     void Start()
     {
         
         fishes = fishWindow.GetComponentsInChildren<PlayableFish>();
-        description.text = fishes[curIndex].GetFishDescription();
+        description.text = fishes[curIndex].fishData.fishDescription;
     }
 
     // Update is called once per frame
@@ -56,7 +56,7 @@ public class ShowWindow : MonoBehaviour, IFishPool
 
         _fish.transform.SetParent(game, false);
         _fish.transform.localPosition = Vector3.zero;
-        _fish.Init((Vector3.right * GameManager.Instance.Global.screenWide*0.5f) + (Vector3.up * GameManager.Instance.Global.screenWide*0.5f), 
+        _fish.Init((Vector3.right * GameManager.Instance.global.screenWide*0.5f) + (Vector3.up * GameManager.Instance.global.screenWide*0.5f), 
             this, new StandardSpec(10, _fish.GetComponent<RectTransform>()));
 
     }

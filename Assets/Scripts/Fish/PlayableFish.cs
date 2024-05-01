@@ -5,17 +5,15 @@ using UnityEngine;
 
 public abstract class PlayableFish : Fish
 {
-    [SerializeField]
-    FishData fishData;
-    public string GetFishName() { return fishData.name; }
-    public string GetFishDescription() { return fishData.fishDescription; }
-    
+
+    public FishData fishData ;
+
     protected SkillTimer timer;
 
     protected override void Start()
     {
         base.Start();
-        GetComponent<UnityEngine.UI.Image>().sprite = fishData.sprite;
+        GetComponent<UnityEngine.UI.Image>().sprite = fishData.fishSprite;
         timer = new CoolTime(fishData.coolTime, fishData.durationTime,SkillEffect);
     }
 

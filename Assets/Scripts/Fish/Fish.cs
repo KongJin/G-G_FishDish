@@ -28,12 +28,12 @@ public class Fish : MonoBehaviour, IMoveAble, IEatAble
         spec = _spec;
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = position;
-        if (position.x == GameManager.Instance.Global.screenWide)
+        if (position.x == GameManager.Instance.global.screenWide)
         {
             direction =  Vector3.left ;
             transform.eulerAngles = new Vector3( 0, 180, 0 );
         }
-        else if(position.x == -GameManager.Instance.Global.screenWide)
+        else if(position.x == -GameManager.Instance.global.screenWide)
         {
             direction = Vector3.right;
             transform.eulerAngles = new Vector3(0, 0, 0);
@@ -49,7 +49,7 @@ public class Fish : MonoBehaviour, IMoveAble, IEatAble
     void Update()
     {
         Move(direction);
-        if(rectTransform.localPosition.x <-GameManager.Instance.Global.screenWide || rectTransform.localPosition.x> GameManager.Instance.Global.screenWide)
+        if(rectTransform.localPosition.x <-GameManager.Instance.global.screenWide || rectTransform.localPosition.x> GameManager.Instance.global.screenWide)
             pool.Release(this);
         
     }

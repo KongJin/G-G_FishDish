@@ -24,11 +24,11 @@ public class RandomSpec : Spec
   
     public override void LevelUp( float _point)
     {
-        if (_point < GameManager.Instance.Global.minFloat)
-            _point = GameManager.Instance.Global.minFloat;
+        if (_point < GameManager.Instance.global.minFloat)
+            _point = GameManager.Instance.global.minFloat;
 
-        size = Random.Range(GameManager.Instance.Global.minFloat, _point* GameManager.Instance.Global.minFloat);
-        speed = Random.Range(GameManager.Instance.Global.minFloat, _point);
+        size = Random.Range(GameManager.Instance.global.minFloat, _point* GameManager.Instance.global.minFloat);
+        speed = Random.Range(GameManager.Instance.global.minFloat, _point);
         rectTransform.localScale  = new Vector3(1,1,1)* size;
     }
 
@@ -40,9 +40,9 @@ public class StandardSpec : Spec
 
     public override void LevelUp(float _point)
     {
-        _point *= GameManager.Instance.Global.minFloat;
-        if (_point < GameManager.Instance.Global.minFloat)
-            _point = GameManager.Instance.Global.minFloat;
+        _point *= GameManager.Instance.global.minFloat;
+        if (_point < GameManager.Instance.global.minFloat)
+            _point = GameManager.Instance.global.minFloat;
         _point += 0.5f;
 
         size += _point;

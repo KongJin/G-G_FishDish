@@ -14,15 +14,10 @@ public class GameManager
         }
     }
     
-    private DataManager dataManager = new ();
-    private ResourcesManager resourcesManager = new();
-    private SoundManager soundManager = new();
-    private Common global = new();
+    public readonly DataManager dataManager = new ();
+    public readonly ResourcesManager resourcesManager = new();
+    public readonly SoundManager soundManager = new();
+    public readonly Common global = new();
 
-    public DataManager Data { get { return dataManager; } }
-    public ResourcesManager Resources { get { return resourcesManager; } }
-    public SoundManager Sound { get { return soundManager; } }
-
-    public Common Global { get { return global; } }
 
 }
