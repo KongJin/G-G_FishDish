@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d741e3f8a9ba55848abe3b4063cdc03e, type: 3}
+  m_Name: FishC
+  m_EditorClassIdentifier: 
+  fishName: "\uCF54\uB9AC\uB3C4\uB77C\uC2A4"
+  fishDescription: "\uC544\uB454\uB3C4\uB9AC\uB2E4\uC2A4"
+  coolTime: 15
+  durationTime: 5
+  sprite: {fileID: 21300000, guid: 82a28eb3eae28c843a712e8563f1f466, type: 3}

@@ -17,7 +17,7 @@ public class Fish : MonoBehaviour, IMoveAble, IEatAble
 {
     protected Spec spec;
     protected Vector3 direction;
-    [SerializeField]
+    
     protected RectTransform rectTransform;
     protected IFishPool pool;
 
@@ -26,30 +26,30 @@ public class Fish : MonoBehaviour, IMoveAble, IEatAble
     {
         pool = _pool;
         spec = _spec;
+        rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = position;
         if (position.x == GameManager.Instance.Global.screenWide)
         {
             direction =  Vector3.left ;
             transform.eulerAngles = new Vector3( 0, 180, 0 );
         }
-        else if(position.x == 0)
+        else if(position.x == -GameManager.Instance.Global.screenWide)
         {
             direction = Vector3.right;
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
         gameObject.SetActive(true);
     }
-    
-    void Start()
+
+    protected virtual void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         Move(direction);
-        if(rectTransform.localPosition.x <0|| rectTransform.localPosition.x> GameManager.Instance.Global.screenWide)
+        if(rectTransform.localPosition.x <-GameManager.Instance.Global.screenWide || rectTransform.localPosition.x> GameManager.Instance.Global.screenWide)
             pool.Release(this);
         
     }

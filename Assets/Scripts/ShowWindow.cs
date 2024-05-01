@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ShowWindow : MonoBehaviour, IFishPool
 {
     
     [SerializeField]
     RectTransform fishWindow;
+
+    [SerializeField]
+    TMPro.TextMeshProUGUI description;
     int distInterval = 600;
     float remainMove = 0;
 
     float duration = 1f;
     float startTime;
-    Fish[] fishes;
+    PlayableFish[] fishes;
     int curIndex;
 
     public void PassOver(int direction)//-1,1
@@ -26,13 +30,14 @@ public class ShowWindow : MonoBehaviour, IFishPool
         remainMove +=  distInterval * direction;
         
         startTime = Time.time;
+        description.text = fishes[curIndex].GetFishDescription();
     }
 
     void Start()
     {
         
-        fishes = fishWindow.GetComponentsInChildren<Fish>();
-
+        fishes = fishWindow.GetComponentsInChildren<PlayableFish>();
+        description.text = fishes[curIndex].GetFishDescription();
     }
 
     // Update is called once per frame
@@ -55,7 +60,8 @@ public class ShowWindow : MonoBehaviour, IFishPool
             this, new StandardSpec(10, _fish.GetComponent<RectTransform>()));
 
     }
-
+ 
+    
     public Fish Get()
     {
         throw new System.NotImplementedException();
@@ -63,6 +69,6 @@ public class ShowWindow : MonoBehaviour, IFishPool
 
     public void Release(Fish fish)
     {
-        throw new System.NotImplementedException();
+        Destroy(fish);
     }
 }

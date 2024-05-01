@@ -27,7 +27,7 @@ public class RandomSpec : Spec
         if (_point < GameManager.Instance.Global.minFloat)
             _point = GameManager.Instance.Global.minFloat;
 
-        size = Random.Range(GameManager.Instance.Global.minFloat, _point);
+        size = Random.Range(GameManager.Instance.Global.minFloat, _point* GameManager.Instance.Global.minFloat);
         speed = Random.Range(GameManager.Instance.Global.minFloat, _point);
         rectTransform.localScale  = new Vector3(1,1,1)* size;
     }

@@ -5,24 +5,27 @@ using UnityEngine;
 
 public abstract class PlayableFish : Fish
 {
-    protected float cooldown;
-    protected float remainTime;
-    //_point,new Vector3(GameManager.Instance.Global.screenWide*0.5f, GameManager.Instance.Global.screenHeight * 0.5f,0), _pool,new StandardSpec()
+    [SerializeField]
+    FishData fishData;
+    public string GetFishName() { return fishData.name; }
+    public string GetFishDescription() { return fishData.fishDescription; }
+    
+    protected SkillTimer timer;
 
-
-    // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
+        GetComponent<UnityEngine.UI.Image>().sprite = fishData.sprite;
+        timer = new CoolTime(fishData.coolTime, fishData.durationTime,SkillEffect);
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        
+        timer.Running(Time.deltaTime);   
     }
 
-    public abstract bool UseSkill(float cooldown);
 
-    //움직임 컨트롤
+    protected abstract void SkillEffect();
+
 }
