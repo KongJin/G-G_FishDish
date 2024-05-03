@@ -2,78 +2,83 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using static DG.Tweening.DOTweenAnimation;
-
-abstract public class SkillTimer
+interface ITimer
 {
-    protected SkillTimer timer;
+    public float GetRatio();
+    public void Running(float deltaTime);
+}
+
+abstract public class SkillTimer:ITimer
+{
     protected float targetTime;
     protected float curTime;
-    protected Action skillEffect;
     public float GetRatio()
     {
         return curTime / targetTime;
     }
-    public bool Use()
-    {
-        if(GetRatio()>=1)
-        {
-            timer = new DurationTime(coolTime, duration,skillEffect);
-            return true;
-        }
-        return false;
-    }
+    public abstract int GetRemainTime();
+
     public abstract void Running(float deltaTime);
 
-    protected float coolTime;
-    protected float duration;
-
-    protected SkillTimer(float _coolTime, float _duration, Action _skillEffect)
+    protected SkillTimer( float _targetTime)
     {
-        curTime = 1;
-        targetTime = 1;
-        coolTime = _coolTime;
-        duration = _duration;
-        skillEffect = _skillEffect;
+        targetTime = _targetTime;
     }
 }
 
 class CoolTime : SkillTimer
 {
-    
+
+    protected Action skillEffect;
+    public CoolTime( float _targetTime) : base( _targetTime)
+    {
+        curTime = 0;
+    }
+    public override int GetRemainTime()
+    {
+        if (targetTime - curTime <= 0)
+        {
+            return 0;
+        }
+        return (int)(targetTime+1 - curTime);
+    }
     public override void Running(float deltaTime)
     {
-        if (curTime <= targetTime)
+        if (curTime >= targetTime)
         {
             curTime = targetTime;
             return;
         }
         curTime += deltaTime;
-       
     }
 
-    public CoolTime(float _coolTime, float _duration, Action _skillEffect) :base(_coolTime, _duration, _skillEffect) { 
-        targetTime = _coolTime;
-        curTime = 0;
-    }
 }
 
 class DurationTime : SkillTimer
 {
+    Action skillEffect;
+    public DurationTime( float _targetTime, Action _skillEffect) : base( _targetTime)
+    {
+        skillEffect = _skillEffect;
+        curTime = _targetTime;
+    }
+    public override int GetRemainTime()
+    {
+        if(curTime<=0)
+        {
+            return 0;
+        }
+        return (int)(curTime+1);
+    }
     public override void Running(float deltaTime)
     {
-        curTime -= deltaTime;
-        skillEffect();
         if (curTime <= 0)
         {
             curTime = 0;
-            timer = new CoolTime(coolTime, duration,skillEffect);
+            return;
         }
+        curTime -= deltaTime;
+        skillEffect();
     }
-    public DurationTime(float _coolTime, float _duration, Action _skillEffect) : base(_coolTime, _duration, _skillEffect)
-    {
-        targetTime = _duration;
-        curTime = _duration;
-    }
+
 }

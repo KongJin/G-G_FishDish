@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d741e3f8a9ba55848abe3b4063cdc03e, type: 3}
   m_Name: FishE
   m_EditorClassIdentifier: 
-  fishName: "\uD50C\uB798\uD2F0"
-  fishDescription: "\uC774\uBC88\uC2DC\uC98C \uD50C\uB808\uD2F0\uB118"
-  coolTime: 15
-  durationTime: 5
-  sprite: {fileID: 21300000, guid: d955bc3f9040c8d4aac1a0311452dc80, type: 3}
+  <fishName>k__BackingField: "\uD50C\uB798\uD2F0"
+  <fishDescription>k__BackingField: "\uB118"
+  <coolTime>k__BackingField: 8
+  <durationTime>k__BackingField: 5
+  <fishSprite>k__BackingField: {fileID: 21300000, guid: d955bc3f9040c8d4aac1a0311452dc80, type: 3}
+  <skillOnSprite>k__BackingField: {fileID: 21300000, guid: 919d11261795bdf49adc0b1d5d010131, type: 3}
+  <skillOffSprite>k__BackingField: {fileID: 21300000, guid: b861296bcc11f2245ada0b22b90cf15a, type: 3}

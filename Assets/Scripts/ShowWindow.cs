@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ShowWindow : MonoBehaviour, IFishPool
+public class ShowWindow : MonoBehaviour
 {
     
     [SerializeField]
     RectTransform fishWindow;
-
+    
     [SerializeField]
     TMPro.TextMeshProUGUI description;
     int distInterval = 600;
@@ -48,27 +48,11 @@ public class ShowWindow : MonoBehaviour, IFishPool
         
         
     }
-    [SerializeField]
-    Transform game;
-    public void GameStart()
+
+    public void GameStart(Player player)
     {
-        Fish _fish = Instantiate(fishes[curIndex], Vector3.zero, Quaternion.identity, transform);//
-
-        _fish.transform.SetParent(game, false);
-        _fish.transform.localPosition = Vector3.zero;
-        _fish.Init((Vector3.right * GameManager.Instance.global.screenWide*0.5f) + (Vector3.up * GameManager.Instance.global.screenWide*0.5f), 
-            this, new StandardSpec(10, _fish.GetComponent<RectTransform>()));
-
+        player.GameStart(fishes[curIndex]);
     }
  
     
-    public Fish Get()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Release(Fish fish)
-    {
-        Destroy(fish);
-    }
 }

@@ -17,6 +17,14 @@ public class FishFactory : MonoBehaviour, IFishPool
 
     Queue<Fish> fishQueue = new();
 
+    public PlayableFish Birth(PlayableFish fish)
+    {
+        PlayableFish _fish = Instantiate(fish, Vector3.zero, Quaternion.identity, transform);
+
+        _fish.transform.SetParent(transform, false);
+        _fish.Init(Vector3.zero, new StandardSpec(5, _fish.GetComponent<RectTransform>()));
+        return _fish;
+    }
 
     public Fish Get()
     {
@@ -44,16 +52,16 @@ public class FishFactory : MonoBehaviour, IFishPool
 
     private Vector3 GetRandomPosition()
     {
-        int height = Random.Range(-GameManager.Instance.global.screenHeight, GameManager.Instance.global.screenHeight);
+        int height = Random.Range(-Define.screenHeight, Define.screenHeight);
         Vector3 position = Vector3.zero;
 
         if (Random.Range(0, 2) > 0)
         {
-            position = (Vector3.right * GameManager.Instance.global.screenWide) + (Vector3.up * height);
+            position = (Vector3.right * Define.screenWide) + (Vector3.up * height);
         }
         else
         {
-            position = (Vector3.left * GameManager.Instance.global.screenWide) + Vector3.up * height;
+            position = (Vector3.left * Define.screenWide) + Vector3.up * height;
         }
         return position;
     }

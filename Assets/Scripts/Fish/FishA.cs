@@ -7,7 +7,7 @@ public class FishA : PlayableFish
 
     protected override void SkillEffect()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("얼어붙어라");
     }
 
     

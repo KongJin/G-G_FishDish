@@ -17,7 +17,7 @@ public class GameManager
     public readonly DataManager dataManager = new ();
     public readonly ResourcesManager resourcesManager = new();
     public readonly SoundManager soundManager = new();
-    public readonly Common global = new();
+    public readonly Define global = new();
 
 
 }

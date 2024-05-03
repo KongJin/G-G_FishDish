@@ -88,5 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af13f13225a4f99488701c370f0c80f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectTransform: {fileID: 8621846537334523280}
-  fishData: {fileID: 11400000, guid: b896589fa5c95fd4ea164f5600067398, type: 2}
+  <fishData>k__BackingField: {fileID: 11400000, guid: b896589fa5c95fd4ea164f5600067398, type: 2}

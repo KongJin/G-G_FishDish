@@ -8,7 +8,9 @@ using UnityEngine;
 public abstract class Spec
 {
     protected float size;
+    public float Size { get { return size; } }
     protected float speed;
+    public float Speed { get { return speed; } }
     protected RectTransform rectTransform;
 
     public abstract void LevelUp(float _point);
@@ -24,11 +26,11 @@ public class RandomSpec : Spec
   
     public override void LevelUp( float _point)
     {
-        if (_point < GameManager.Instance.global.minFloat)
-            _point = GameManager.Instance.global.minFloat;
+        if (_point < Define.minFloat)
+            _point = Define.minFloat;
 
-        size = Random.Range(GameManager.Instance.global.minFloat, _point* GameManager.Instance.global.minFloat);
-        speed = Random.Range(GameManager.Instance.global.minFloat, _point);
+        size = Random.Range(Define.minFloat, _point* Define.minFloat);
+        speed = Random.Range(Define.minFloat, _point);
         rectTransform.localScale  = new Vector3(1,1,1)* size;
     }
 
@@ -40,9 +42,9 @@ public class StandardSpec : Spec
 
     public override void LevelUp(float _point)
     {
-        _point *= GameManager.Instance.global.minFloat;
-        if (_point < GameManager.Instance.global.minFloat)
-            _point = GameManager.Instance.global.minFloat;
+        _point *= Define.minFloat;
+        if (_point < Define.minFloat)
+            _point = Define.minFloat;
         _point += 0.5f;
 
         size += _point;
