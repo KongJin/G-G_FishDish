@@ -46,15 +46,15 @@ public abstract class PlayableFish : Fish
 
             if(rectTransform.localPosition.x < -Define.screenWide)
             {
-                rectTransform.localPosition.Set(Define.screenWide, rectTransform.localPosition.y, rectTransform.localPosition.z) ;
+                rectTransform.localPosition= new Vector3(Define.screenWide, rectTransform.localPosition.y, rectTransform.localPosition.z) ;
             }
         }
-        else
+        else if (direction.x > 0)
         {
             transform.eulerAngles = Vector3.zero;
             if (rectTransform.localPosition.x > Define.screenWide)
             {
-                rectTransform.localPosition.Set(-Define.screenWide, rectTransform.localPosition.y, rectTransform.localPosition.z);
+                rectTransform.localPosition = new Vector3(-Define.screenWide, rectTransform.localPosition.y, rectTransform.localPosition.z);
             }
         }
         base.Move(direction*spec.Speed);
