@@ -4657,6 +4657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fish: {fileID: 6975833972279689363, guid: 07d61d06a9b74934dbcd4269becab4c9, type: 3}
+  pointUI: {fileID: 1790103250}
 --- !u!1 &1508705671
 GameObject:
   m_ObjectHideFlags: 0
