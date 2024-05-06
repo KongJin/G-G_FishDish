@@ -44,26 +44,30 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     private void Update()
     {
-        if(!pressing&&ratio > 0.2f)
+        if(!pressing)
         {
-            ratio -= Time.deltaTime;
+            if(ratio > 0.1f)
+                ratio -= Time.deltaTime;
             point -= point * Time.deltaTime;
         }
             
         SetPoint();
+        
         fish.Move(point);
+        fish.SetHeadDirection(moveDir);
+        
     }
 
     void SetPoint()
     {
         
-        if(point.sqrMagnitude>  ratio*2)
+        if(point.magnitude>  2)//
         {
-            point = moveDir * ratio*2;
+            point = point.normalized*2;
         }
         else
         {
-            point += moveDir * ratio * Time.deltaTime * 10;
+            point += moveDir * ratio * Time.deltaTime * 3;
         }
         float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
         arrow.SetArrow(angle, ratio);

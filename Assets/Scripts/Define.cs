@@ -12,10 +12,16 @@ public class Define
         SWORD,
         MAX
     }
+    public enum LayerType
+    {
+        Indegenous=6,
+        Player
+    }
     public static readonly int screenWide = 360;
     public static readonly int screenHeight = 640;
 
     public static readonly float minFloat = 0.1f;
+    public static readonly int space = 50;
 
     public enum Sound
     {

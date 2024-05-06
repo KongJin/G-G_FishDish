@@ -8,24 +8,27 @@ public interface IFishPool
     Fish Get();
     void Release(Fish fish );
 }
-
-public class FishFactory : MonoBehaviour, IFishPool
+public interface IPointAdder
 {
-    int _curPoint;
+    public void AddPoint();
+}
+
+public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
+{
+    int curPoint;
 
     [SerializeField]
     Fish fish;
     [SerializeField]
-    TMPro.TextMeshProUGUI textMeshProUGUI;
+    TMPro.TextMeshProUGUI pointUI;
 
     Queue<Fish> fishQueue = new();
-    PlayableFish playfish;
     public PlayableFish Birth(PlayableFish _fish)
     {
-        playfish = Instantiate(_fish, Vector3.zero, Quaternion.identity, transform);
+        PlayableFish playfish = Instantiate(_fish, Vector3.zero, Quaternion.identity, transform);
 
         playfish.transform.SetParent(transform, false);
-        playfish.Init(Vector3.zero, new StandardSpec(1, playfish.GetComponent<RectTransform>()));
+        playfish.Init(Vector3.zero, new StandardSpec(1, playfish.GetComponent<RectTransform>()),this);
         return playfish;
     }
 
@@ -44,12 +47,16 @@ public class FishFactory : MonoBehaviour, IFishPool
         return _fish ;
     }
 
+    public void AddPoint()
+    {
+        curPoint += 10;
+        pointUI.text = curPoint.ToString();
+    }
 
     public void Release(Fish element)
     {
         element.gameObject.SetActive(false);
         fishQueue.Enqueue(element);
-
     }
 
     private Vector3 GetRandomPosition()
@@ -59,11 +66,11 @@ public class FishFactory : MonoBehaviour, IFishPool
 
         if (Random.Range(0, 2) > 0)
         {
-            position = (Vector3.right * Define.screenWide) + (Vector3.up * height);
+            position = (Vector3.right * (Define.screenWide+ Define.space)) + (Vector3.up * height);
         }
         else
         {
-            position = (Vector3.left * Define.screenWide) + Vector3.up * height;
+            position = (Vector3.left * (Define.screenWide+ Define.space)) + Vector3.up * height;
         }
         return position;
     }
@@ -87,6 +94,6 @@ public class FishFactory : MonoBehaviour, IFishPool
         
         remainTime = Random.Range(0.2f, MaxCreationInterval);
         Fish fish  =  Get();
-        fish.Init( GetRandomPosition(), this, new RandomSpec(_curPoint , fish.GetComponent<RectTransform>()));
+        fish.Init( GetRandomPosition(), this, new RandomSpec(curPoint*0.01f , fish.GetComponent<RectTransform>()));
     }
 }

@@ -28,12 +28,12 @@ public class Fish : MonoBehaviour, IMoveAble, IEatAble
         spec = _spec;
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = position;
-        if (position.x == Define.screenWide)
+        if (position.x >0)
         {
             direction =  Vector3.left ;
             transform.eulerAngles = new Vector3( 0, 180, 0 );
         }
-        else if(position.x == -Define.screenWide)
+        else if(position.x <0)
         {
             direction = Vector3.right;
             transform.eulerAngles = new Vector3(0, 0, 0);
@@ -43,13 +43,14 @@ public class Fish : MonoBehaviour, IMoveAble, IEatAble
 
     protected virtual void Start()
     {
+        myLayer = (short)Define.LayerType.Indegenous;
     }
 
     // Update is called once per frame
     void Update()
     {
         Move(direction);
-        if(rectTransform.localPosition.x <-Define.screenWide || rectTransform.localPosition.x> Define.screenWide)
+        if(rectTransform.localPosition.x <-Define.screenWide- Define.space || rectTransform.localPosition.x> Define.screenWide+ Define.space)
             pool.Release(this);
         
     }
@@ -66,11 +67,14 @@ public class Fish : MonoBehaviour, IMoveAble, IEatAble
 
         if (size>spec.size) { pool.Release(this); }
     }
+    protected short myLayer;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Eat(other.GetComponentInParent<Fish>().spec.size);
-        Debug.Log("sss", other);
+        Fish _fish = other.GetComponent<Fish>();
+        if ( _fish.gameObject.layer == myLayer)
+            return;
+        Eat(_fish.spec.size);
     }
   
 }
