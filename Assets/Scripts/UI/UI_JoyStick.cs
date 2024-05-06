@@ -26,6 +26,8 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField]
     private UI_Arrow arrow;
 
+    private bool pressing;
+
     public void Init(PlayableFish _fish)
     {
         fish = _fish;
@@ -42,40 +44,47 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     private void Update()
     {
+        if(!pressing&&ratio > 0.2f)
+        {
+            ratio -= Time.deltaTime;
+            point -= point * Time.deltaTime;
+        }
+            
+        SetPoint();
         fish.Move(point);
-
-
     }
 
     void SetPoint()
     {
-        point = moveDir * ratio;
-
-        float angle = Mathf.Atan2(point.y, point.x) * Mathf.Rad2Deg;
+        
+        if(point.sqrMagnitude>  ratio*2)
+        {
+            point = moveDir * ratio*2;
+        }
+        else
+        {
+            point += moveDir * ratio * Time.deltaTime * 10;
+        }
+        float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
         arrow.SetArrow(angle, ratio);
     }
     void OnPress(Vector2 pressPoint)
     {
+        pressing = true;
         float dist = Vector2.Distance(joystickOriginalPos, pressPoint);
         if(dist > joystickRadius)
             dist = joystickRadius;
         ratio = dist / joystickRadius;
 
         moveDir = (pressPoint - joystickOriginalPos).normalized;
-        SetPoint();
-
         handler.localPosition = moveDir* dist*2;//+_joystickTouchPos 
-
     }
     public void OnPointerDown(PointerEventData eventData) { OnPress(eventData.position); }
     public void OnDrag(PointerEventData eventData) { OnPress(eventData.position); }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        ratio *=  0.7f;
-        SetPoint();
-
-        moveDir = Vector2.zero;
+        pressing = false;
         handler.localPosition = Vector2.zero;
     }
 

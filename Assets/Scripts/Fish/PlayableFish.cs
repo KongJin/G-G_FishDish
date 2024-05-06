@@ -17,12 +17,17 @@ public abstract class PlayableFish : Fish
         rectTransform.localPosition = position;
         timer = new CoolTime(fishData.coolTime);
         gameObject.SetActive(true);
+        Rigidbody2D rgbd= gameObject.AddComponent<Rigidbody2D>();
+        rgbd.isKinematic = true;
     }
 
     protected override void Start()
     {
         base.Start();
-        GetComponent<UnityEngine.UI.Image>().sprite = fishData.fishSprite;
+        UnityEngine.UI.Image img = GetComponent<UnityEngine.UI.Image>();
+        img.sprite = fishData.fishSprite;
+        img.SetNativeSize();
+        
 
         Effect = SkillEffect;
 
@@ -57,7 +62,22 @@ public abstract class PlayableFish : Fish
                 rectTransform.localPosition = new Vector3(-Define.screenWide, rectTransform.localPosition.y, rectTransform.localPosition.z);
             }
         }
-        base.Move(direction*spec.Speed);
+        if(direction.y > 0&&rectTransform.localPosition.y > Define.screenHeight)
+                direction.y = 0;
+        else if(direction.y < 0&&rectTransform.localPosition.y < -Define.screenHeight)
+                direction.y = 0;
+            
+        base.Move(direction*spec.speed);
+
+    }
+
+    public override void Eat(float size)
+    {
+        Debug.Log($"playable eat other={size} , me = {spec.size}");
+        if (size > spec.size)
+        { // ∞‘¿”≥°
+
+        }
 
     }
 }

@@ -9,13 +9,13 @@ public interface IMoveAble
 
 public interface IEatAble
 {
-    void Eat(int size);
+    void Eat(float size);
 }
 
 
 public class Fish : MonoBehaviour, IMoveAble, IEatAble
 {
-    protected Spec spec;
+    public Spec spec { get; protected set; }
     protected Vector3 direction;
     
     protected RectTransform rectTransform;
@@ -60,10 +60,17 @@ public class Fish : MonoBehaviour, IMoveAble, IEatAble
         
     }
 
-    public virtual void Eat(int size)
+    public virtual void Eat(float size)
     {
+        Debug.Log($"eat  other {size} ,me {spec.size} ");
 
+        if (size>spec.size) { pool.Release(this); }
     }
 
-    
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        Eat(other.GetComponentInParent<Fish>().spec.size);
+        Debug.Log("sss", other);
+    }
+  
 }
