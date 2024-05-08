@@ -32,7 +32,7 @@ public class UI_Skill : MonoBehaviour
         skillOnImage.fillAmount = timer.GetRatio();
         if(timer.GetRatio() <= 0)
         {
-            timer = new CoolTime(fish.fishData.coolTime);
+            timer = new CoolTime(fish.fishData.coolTime,fish.Base);
         }
         int iText = timer.GetRemainTime();
 

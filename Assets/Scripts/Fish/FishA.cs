@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class FishA : PlayableFish
 {
-
+    IMoveAble temp;
+   IMoveAble skillEfect;
+    protected override void Start()
+    {
+        base.Start();
+        temp = mover;
+        skillEfect = new Stop();
+    }
     protected override void SkillEffect()
     {
-        Debug.Log("얼어붙어라");
+        mover = skillEfect;
     }
 
-    
+    protected override void BaseEffect()
+    {
+        mover = temp;
+    }
 }

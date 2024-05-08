@@ -23,12 +23,13 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     TMPro.TextMeshProUGUI pointUI;
 
     Queue<Fish> fishQueue = new();
-    public PlayableFish Birth(PlayableFish _fish)
+    public PlayableFish Birth(PlayableFish _fish, UI_Joystick joystick)
     {
         PlayableFish playfish = Instantiate(_fish, Vector3.zero, Quaternion.identity, transform);
 
         playfish.transform.SetParent(transform, false);
-        playfish.Init(Vector3.zero, new StandardSpec(1, playfish.GetComponent<RectTransform>()),this);
+        playfish.Init(Vector3.zero, new StandardSpec(1, playfish.GetComponent<RectTransform>()),this , joystick);
+        
         return playfish;
     }
 

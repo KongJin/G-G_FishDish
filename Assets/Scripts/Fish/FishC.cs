@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class FishC : PlayableFish
 {
+    protected override void BaseEffect()
+    {
+        throw new System.NotImplementedException();
+    }
 
     protected override void SkillEffect()
     {

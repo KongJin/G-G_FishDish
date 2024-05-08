@@ -11,16 +11,17 @@ public abstract class PlayableFish : Fish
 
     public SkillTimer timer { get; private set; }
 
-    public void Init(Vector3 position,  Spec _spec , IPointAdder _adder)
+    public void Init(Vector3 position,  Spec _spec , IPointAdder _adder , UI_Joystick joystick)
     {
         spec = _spec;
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = position;
-        timer = new CoolTime(fishData.coolTime);
+        timer = new CoolTime(fishData.coolTime,BaseEffect);
         gameObject.SetActive(true);
         Rigidbody2D rgbd= gameObject.AddComponent<Rigidbody2D>();
         rgbd.isKinematic = true;
         adder = _adder;
+        joystick.Init(transform, direction);
     }
 
     protected override void Start()
@@ -32,55 +33,34 @@ public abstract class PlayableFish : Fish
         
 
         Effect = SkillEffect;
+        Base = BaseEffect;
         myLayer = (short)Define.LayerType.Player;
+
+        mover = new PlayerMove(rectTransform);
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    void Update()
     {
-       
+        if (spec == null)
+            return;
+        mover.Move(direction[0] * spec.speed);
     }
-    public Action Effect { get; private set; }
+    public Action Effect { get; protected set; }
+
+    public Action Base { get; protected set; }
+
 
     protected abstract void SkillEffect();
 
-    public override void Move(Vector3 direction)
-    {
-               
-        if(direction.y > 0&&rectTransform.localPosition.y > Define.screenHeight)
-                direction.y = 0;
-        else if(direction.y < 0&&rectTransform.localPosition.y < -Define.screenHeight)
-                direction.y = 0;
-            
-        base.Move(direction*spec.speed);
+    protected abstract void BaseEffect();
 
-    }
 
-    public void SetHeadDirection(Vector3 direction)
-    {
-        if (direction.x < 0)
-        {
-            transform.eulerAngles = Vector3.up * 180;
 
-            if (rectTransform.localPosition.x < -Define.screenWide)
-            {
-                rectTransform.localPosition = new Vector3(Define.screenWide, rectTransform.localPosition.y, rectTransform.localPosition.z);
-            }
-        }
-        else if (direction.x > 0)
-        {
-            transform.eulerAngles = Vector3.zero;
-            if (rectTransform.localPosition.x > Define.screenWide)
-            {
-                rectTransform.localPosition = new Vector3(-Define.screenWide, rectTransform.localPosition.y, rectTransform.localPosition.z);
-            }
-        }
-    }
 
     IPointAdder adder;
     public override void Eat(float size)
     {
-        Debug.Log($"playable eat other={size} , me = {spec.size}");
         if (size > spec.size)//게임끝나야함
         { 
 

@@ -24,15 +24,18 @@ abstract public class SkillTimer:ITimer
     {
         targetTime = _targetTime;
     }
+
+    protected Action effect;
 }
 
 class CoolTime : SkillTimer
 {
 
-    protected Action skillEffect;
-    public CoolTime( float _targetTime) : base( _targetTime)
+    public CoolTime( float _targetTime, Action _baseEffect) : base( _targetTime)
     {
         curTime = 0;
+
+        effect = _baseEffect;
     }
     public override int GetRemainTime()
     {
@@ -56,10 +59,9 @@ class CoolTime : SkillTimer
 
 class DurationTime : SkillTimer
 {
-    Action skillEffect;
     public DurationTime( float _targetTime, Action _skillEffect) : base( _targetTime)
     {
-        skillEffect = _skillEffect;
+        effect = _skillEffect;
         curTime = _targetTime;
     }
     public override int GetRemainTime()
@@ -78,7 +80,7 @@ class DurationTime : SkillTimer
             return;
         }
         curTime -= deltaTime;
-        skillEffect();
+        effect();
     }
 
 }

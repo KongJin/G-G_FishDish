@@ -26,7 +26,7 @@ public class RandomSpec : Spec
             _point = 5;
 
         size =  Random.Range(Define.minFloat*_point, _point);
-        speed = Random.Range(Define.minFloat* _point, _point );
+        speed = Random.Range(Define.minFloat* _point, Define.minFloat*_point*5);
         rectTransform.localScale  = new Vector3(1,1,1)*  size;
     }
 
@@ -42,9 +42,9 @@ public class StandardSpec : Spec
             _point = Define.minFloat;
 
         size += _point;
-        speed += _point;
+        speed += _point*Define.minFloat;
         rectTransform.localScale = new Vector3(1, 1, 1) *size;
     }
-
-    public StandardSpec(float _point, RectTransform rectTransform) : base(_point, rectTransform) { }
+    
+    public StandardSpec(float _point, RectTransform rectTransform) : base(_point, rectTransform) { speed = 0.7f; }
 }
