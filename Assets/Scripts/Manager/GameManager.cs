@@ -18,6 +18,4 @@ public class GameManager
     public readonly ResourcesManager resourcesManager = new();
     public readonly SoundManager soundManager = new();
     public readonly Define global = new();
-
-
 }

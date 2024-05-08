@@ -27,7 +27,6 @@ public class UI_Skill : MonoBehaviour
 
     void Update()
     {
-
         timer.Running(Time.deltaTime);
         skillOnImage.fillAmount = timer.GetRatio();
         if(timer.GetRatio() <= 0)
@@ -37,7 +36,6 @@ public class UI_Skill : MonoBehaviour
         int iText = timer.GetRemainTime();
 
         textMeshProUGUI.text = iText == 0 ?  "": iText.ToString();
-        
     }
 
     public void ClickSkill()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FishA
   m_EditorClassIdentifier: 
   <fishName>k__BackingField: "\uAE08\uBD95\uC5B4"
-  <fishDescription>k__BackingField: "\uAE08\uBD95\uC774"
+  <fishDescription>k__BackingField: "\uB098\uB294 \uADC0\uC5EC\uC6CC"
   <coolTime>k__BackingField: 5
   <durationTime>k__BackingField: 2
   <fishSprite>k__BackingField: {fileID: 21300000, guid: 6c70a102720106543a8b08ca87c6893a, type: 3}

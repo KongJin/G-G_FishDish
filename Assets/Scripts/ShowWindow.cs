@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 public class ShowWindow : MonoBehaviour
@@ -10,12 +11,16 @@ public class ShowWindow : MonoBehaviour
     RectTransform fishWindow;
     
     [SerializeField]
-    TMPro.TextMeshProUGUI description;
+    TextMeshProUGUI description;
+
+    [SerializeField]
+    TextMeshProUGUI fishName;
     int distInterval = 600;
     float remainMove = 0;
 
     float duration = 1f;
     float startTime;
+    [SerializeField]
     PlayableFish[] fishes;
     int curIndex;
 
@@ -30,29 +35,25 @@ public class ShowWindow : MonoBehaviour
         remainMove +=  distInterval * direction;
         
         startTime = Time.time;
+
+        fishName.text = fishes[curIndex].fishData.fishName;
         description.text = fishes[curIndex].fishData.fishDescription;
     }
 
     void Start()
     {
-        
-        fishes = fishWindow.GetComponentsInChildren<PlayableFish>();
+        fishName.text = fishes[curIndex].fishData.fishName;
         description.text = fishes[curIndex].fishData.fishDescription;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float t = (Time.time - startTime) / duration;
         fishWindow.localPosition = Vector3.Lerp(fishWindow.localPosition, Vector3.right * remainMove, t);
-        
-        
     }
 
     public void GameStart(Player player)
     {
         player.GameStart(fishes[curIndex]);
     }
- 
-    
 }
