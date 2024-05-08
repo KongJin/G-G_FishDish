@@ -364,7 +364,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ec18a654d7f6d1448bfcbc60ba80ed30, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4fbc2feb2c597204a914ab2d4b1d1b50, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1685,7 +1685,6 @@ GameObject:
   - component: {fileID: 369575054}
   - component: {fileID: 369575056}
   - component: {fileID: 369575055}
-  - component: {fileID: 369575057}
   m_Layer: 5
   m_Name: Image_FishE
   m_TagString: Untagged
@@ -1750,19 +1749,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369575053}
   m_CullTransparentMesh: 1
---- !u!114 &369575057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 369575053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6136022087e0bd34f86c1b375d17cca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myData: {fileID: 0}
 --- !u!1 &375900129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,7 +2821,6 @@ GameObject:
   - component: {fileID: 592944377}
   - component: {fileID: 592944379}
   - component: {fileID: 592944378}
-  - component: {fileID: 592944380}
   m_Layer: 5
   m_Name: Image_FishD
   m_TagString: Untagged
@@ -2900,19 +2885,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592944376}
   m_CullTransparentMesh: 1
---- !u!114 &592944380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 592944376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6136022087e0bd34f86c1b375d17cca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myData: {fileID: 0}
 --- !u!1 &599171980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3554,6 +3526,7 @@ MonoBehaviour:
   fishWindow: {fileID: 465935337}
   description: {fileID: 168067553}
   fishName: {fileID: 354081374}
+  fishSkill: {fileID: 1684026611}
   fishes:
   - {fileID: 660109758214933965, guid: 98efa2f3e3ee68c48898501b9850e9eb, type: 3}
   - {fileID: 1340687366456848324, guid: 3cac0ebd04e69654e944f0e3b2258d47, type: 3}
@@ -4620,6 +4593,7 @@ RectTransform:
   m_Children:
   - {fileID: 1790103249}
   - {fileID: 161373096}
+  - {fileID: 1934599765}
   - {fileID: 790718389}
   - {fileID: 491907086}
   m_Father: {fileID: 1799997803}
@@ -4641,6 +4615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b535e45f203bf34994952cd48418c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pools: {fileID: 1934599765}
   fish: {fileID: 6975833972279689363, guid: 07d61d06a9b74934dbcd4269becab4c9, type: 3}
   pointUI: {fileID: 1790103250}
 --- !u!1 &1430798285
@@ -5280,7 +5255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 00c38b439f990d44bbc9f8b0406f15e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86c4dbda804244f449e536a389e0c12c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5614,7 +5589,6 @@ GameObject:
   - component: {fileID: 1696224453}
   - component: {fileID: 1696224455}
   - component: {fileID: 1696224454}
-  - component: {fileID: 1696224456}
   m_Layer: 5
   m_Name: Image_FishA
   m_TagString: Untagged
@@ -5679,19 +5653,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696224452}
   m_CullTransparentMesh: 1
---- !u!114 &1696224456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696224452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6136022087e0bd34f86c1b375d17cca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myData: {fileID: 0}
 --- !u!1 &1710645850
 GameObject:
   m_ObjectHideFlags: 0
@@ -5703,7 +5664,6 @@ GameObject:
   - component: {fileID: 1710645851}
   - component: {fileID: 1710645853}
   - component: {fileID: 1710645852}
-  - component: {fileID: 1710645854}
   m_Layer: 5
   m_Name: Image_FishB
   m_TagString: Untagged
@@ -5768,19 +5728,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710645850}
   m_CullTransparentMesh: 1
---- !u!114 &1710645854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710645850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6136022087e0bd34f86c1b375d17cca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myData: {fileID: 0}
 --- !u!1 &1765782816
 GameObject:
   m_ObjectHideFlags: 0
@@ -6612,6 +6559,41 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1934599764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1934599765}
+  m_Layer: 5
+  m_Name: FishPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1934599765
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934599764}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1309280502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2009381564
 GameObject:
   m_ObjectHideFlags: 0
@@ -6778,7 +6760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 35.975, y: 105.4}
+  m_AnchoredPosition: {x: 35.975006, y: 105.4}
   m_SizeDelta: {x: -71.95, y: 143.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2059988561
@@ -6792,7 +6774,6 @@ GameObject:
   - component: {fileID: 2059988562}
   - component: {fileID: 2059988564}
   - component: {fileID: 2059988563}
-  - component: {fileID: 2059988565}
   m_Layer: 5
   m_Name: Image_FishC
   m_TagString: Untagged
@@ -6857,19 +6838,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059988561}
   m_CullTransparentMesh: 1
---- !u!114 &2059988565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2059988561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6136022087e0bd34f86c1b375d17cca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myData: {fileID: 0}
 --- !u!1 &2069789119
 GameObject:
   m_ObjectHideFlags: 0

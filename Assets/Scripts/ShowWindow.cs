@@ -15,6 +15,9 @@ public class ShowWindow : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI fishName;
+
+    [SerializeField]
+    TextMeshProUGUI fishSkill;
     int distInterval = 600;
     float remainMove = 0;
 
@@ -38,12 +41,14 @@ public class ShowWindow : MonoBehaviour
 
         fishName.text = fishes[curIndex].fishData.fishName;
         description.text = fishes[curIndex].fishData.fishDescription;
+        fishSkill.text = fishes[curIndex].fishData.fishSkill;
     }
 
     void Start()
     {
         fishName.text = fishes[curIndex].fishData.fishName;
         description.text = fishes[curIndex].fishData.fishDescription;
+        fishSkill.text = fishes[curIndex].fishData.fishSkill;
     }
 
     void Update()

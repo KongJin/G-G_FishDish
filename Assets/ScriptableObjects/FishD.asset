@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <fishName>k__BackingField: "\uC18C\uB4DC\uD14C\uC77C"
   <fishDescription>k__BackingField: "\uC18C\uB4DC\uB9C8\uC2A4\uD130"
+  <fishSkill>k__BackingField: "\uC2A4\uD0AC4 ( \uCFE8\uD0C0\uC784 : 15\uCD08 )"
   <coolTime>k__BackingField: 15
   <durationTime>k__BackingField: 5
   <fishSprite>k__BackingField: {fileID: 21300000, guid: 3eca2d9438d6516418dbb88f1aedde6a, type: 3}

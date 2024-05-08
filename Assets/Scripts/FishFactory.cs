@@ -16,7 +16,8 @@ public interface IPointAdder
 public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
 {
     int curPoint;
-
+    [SerializeField]
+    Transform pools;
     [SerializeField]
     Fish fish;
     [SerializeField]
@@ -41,8 +42,8 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
             _fish = fishQueue.Dequeue();
         }else
         {
-            _fish = Instantiate(fish, Vector3.zero, Quaternion.identity, transform);//
-            _fish.transform.SetParent(transform, false);
+            _fish = Instantiate(fish, Vector3.zero, Quaternion.identity, pools);//
+            _fish.transform.SetParent(pools, false);
         }
         
         return _fish ;
