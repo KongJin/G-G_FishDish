@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class FishC : PlayableFish
 {
+    float interval = 0.8f;
+    float remain = 0;
+
+    int space =200;
     protected override void BaseEffect()
     {
-        throw new System.NotImplementedException();
-    }
 
+    }
+        
     protected override void SkillEffect()
     {
-        throw new System.NotImplementedException();
+        remain -= Time.deltaTime;
+        if (remain > 0)
+            return;
+
+        remain = Random.Range(Define.minFloat, interval);
+
+        Vector3 randompos = rectTransform.localPosition + new Vector3( Random.Range(-space*2, space*2), Random.Range(0, 2) == 0 ? space : -space, 0);
+        Fish fish = pool.Get();
+        
+        fish.Init(randompos, pool, new RandomSpec(spec.size*Define.minFloat+2, fish.GetComponent<RectTransform>()));
+
     }
 
     

@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class FishD : PlayableFish
 {
+    IEatAble temp;
+    IEatAble skillEfect;
+    protected override void Start()
+    {
+        base.Start();
+        temp = eater;
+        skillEfect = new BigEat(spec, adder);
+    }
+
+    //범위 증가, ,  
     protected override void BaseEffect()
     {
-        throw new System.NotImplementedException();
+        eater = temp;
+        rectTransform.localEulerAngles =  new Vector3 (0,rectTransform.localEulerAngles.y,0);
+
     }
 
     protected override void SkillEffect()
     {
-        throw new System.NotImplementedException();
+        eater = skillEfect;
+        rectTransform.localEulerAngles += Vector3.back*5;
     }
 
     

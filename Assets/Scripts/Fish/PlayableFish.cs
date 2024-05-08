@@ -11,7 +11,7 @@ public abstract class PlayableFish : Fish
 
     public SkillTimer timer { get; private set; }
 
-    public void Init(Vector3 position,  Spec _spec , IPointAdder _adder , UI_Joystick joystick)
+    public void Init(Vector3 position,  Spec _spec , IPointAdder _adder , UI_Joystick joystick , IFishPool _pool)
     {
         spec = _spec;
         rectTransform = GetComponent<RectTransform>();
@@ -21,6 +21,7 @@ public abstract class PlayableFish : Fish
         Rigidbody2D rgbd= gameObject.AddComponent<Rigidbody2D>();
         rgbd.isKinematic = true;
         adder = _adder;
+        pool = _pool;
         joystick.Init(transform, direction);
     }
 
@@ -37,6 +38,7 @@ public abstract class PlayableFish : Fish
         myLayer = (short)Define.LayerType.Player;
 
         mover = new PlayerMove(rectTransform);
+        eater = new PlayerFishEat(spec, adder);
     }
 
     // Update is called once per frame
@@ -47,27 +49,12 @@ public abstract class PlayableFish : Fish
         mover.Move(direction[0] * spec.speed);
     }
     public Action Effect { get; protected set; }
-
     public Action Base { get; protected set; }
-
-
     protected abstract void SkillEffect();
 
     protected abstract void BaseEffect();
 
 
-
-
-    IPointAdder adder;
-    public override void Eat(float size)
-    {
-        if (size > spec.size)//게임끝나야함
-        { 
-
-        }else
-        {
-            spec.LevelUp(size*Define.minFloat);
-            adder.AddPoint();
-        }
-    }
+    protected IPointAdder adder;
+    
 }

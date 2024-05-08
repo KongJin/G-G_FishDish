@@ -40,7 +40,7 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         joystickOriginalPos = RectTransformUtility.WorldToScreenPoint(Camera.main, joystickBG.position) ;
         joystickRadius = joystickBG.sizeDelta.y / 4f;
-        
+        change = 1;
         
     }
     private void Update()
@@ -66,6 +66,10 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         arrow.SetArrow(angle, ratio);
         fishPoint[0] = point;
     }
+
+
+    float change;
+
     void OnPress(Vector2 pressPoint)
     {
         pressing = true;
@@ -77,10 +81,12 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         moveDir = (pressPoint - joystickOriginalPos).normalized;
         handler.localPosition = moveDir* dist*2;//+_joystickTouchPos 
 
-        if (moveDir.x < 0)
-            fishTransform.eulerAngles = Vector3.up * 180;
-        else if (moveDir.x > 0)
-            fishTransform.eulerAngles = Vector3.zero;
+        if (moveDir.x < 0 != change < 0)
+        {
+            fishTransform.eulerAngles += Vector3.up * 180;
+        }
+        change = moveDir.x;
+
     }
     public void OnPointerDown(PointerEventData eventData) { OnPress(eventData.position); }
     public void OnDrag(PointerEventData eventData) { OnPress(eventData.position); }

@@ -34,8 +34,8 @@ class CoolTime : SkillTimer
     public CoolTime( float _targetTime, Action _baseEffect) : base( _targetTime)
     {
         curTime = 0;
-
         effect = _baseEffect;
+        effect();
     }
     public override int GetRemainTime()
     {
@@ -53,6 +53,7 @@ class CoolTime : SkillTimer
             return;
         }
         curTime += deltaTime;
+        
     }
 
 }

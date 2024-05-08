@@ -10,7 +10,7 @@ public interface IFishPool
 }
 public interface IPointAdder
 {
-    public void AddPoint();
+    public void AddPoint(float size);
 }
 
 public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
@@ -28,7 +28,7 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
         PlayableFish playfish = Instantiate(_fish, Vector3.zero, Quaternion.identity, transform);
 
         playfish.transform.SetParent(transform, false);
-        playfish.Init(Vector3.zero, new StandardSpec(1, playfish.GetComponent<RectTransform>()),this , joystick);
+        playfish.Init(Vector3.zero, new StandardSpec(1, playfish.GetComponent<RectTransform>()),this , joystick, this);
         
         return playfish;
     }
@@ -48,9 +48,9 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
         return _fish ;
     }
 
-    public void AddPoint()
+    public void AddPoint(float size)
     {
-        curPoint += 10;
+        curPoint += (int)(size*10);
         pointUI.text = curPoint.ToString();
     }
 
@@ -93,8 +93,8 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
             return;
         }
         
-        remainTime = Random.Range(0.2f, MaxCreationInterval);
+        remainTime = Random.Range(Define.minFloat, MaxCreationInterval);
         Fish fish  =  Get();
-        fish.Init( GetRandomPosition(), this, new RandomSpec(curPoint*0.01f , fish.GetComponent<RectTransform>()));
+        fish.Init( GetRandomPosition(), this, new RandomSpec(curPoint*0.01f +3, fish.GetComponent<RectTransform>()));
     }
 }

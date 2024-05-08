@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEatAble
-{
-    void Eat(float size);
-}
 
 
-public class Fish : MonoBehaviour,  IEatAble
+public class Fish : MonoBehaviour  
 {
     public Spec spec { get; protected set; }
     protected Vector3[] direction = new Vector3[] { Vector3.zero };
@@ -21,6 +17,7 @@ public class Fish : MonoBehaviour,  IEatAble
     {
         pool = _pool;
         spec = _spec;
+        eater = new FishEat(spec, pool, this);
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = position;
         if (position.x >0)
@@ -40,7 +37,6 @@ public class Fish : MonoBehaviour,  IEatAble
     {
         myLayer = (short)Define.LayerType.Indegenous;
         mover = new FishMove(rectTransform);
-        eater = this;
     }
 
     protected IMoveAble mover;
@@ -53,11 +49,7 @@ public class Fish : MonoBehaviour,  IEatAble
     }
 
     protected IEatAble eater;
-    public virtual void Eat(float size)
-    {
-
-        if (size>spec.size) { pool.Release(this); }
-    }
+   
     protected short myLayer;
 
     public void OnTriggerEnter2D(Collider2D other)

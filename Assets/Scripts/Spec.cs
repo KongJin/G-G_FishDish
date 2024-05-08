@@ -22,9 +22,6 @@ public class RandomSpec : Spec
   
     public override void LevelUp( float _point)
     {
-        if (_point < 5)
-            _point = 5;
-
         size =  Random.Range(Define.minFloat*_point, _point);
         speed = Random.Range(Define.minFloat* _point, Define.minFloat*_point*5);
         rectTransform.localScale  = new Vector3(1,1,1)*  size;

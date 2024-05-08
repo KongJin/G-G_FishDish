@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class FishB : PlayableFish
 {
+
+    IEatAble temp;
+    IEatAble skillEfect;
+    protected override void Start()
+    {
+        base.Start();
+        temp = eater;
+        skillEfect = new DoubleEat(spec,adder);
+    }
+
     protected override void BaseEffect()
     {
-        throw new System.NotImplementedException();
+        eater = temp; 
     }
 
     protected override void SkillEffect()
     {
-        throw new System.NotImplementedException();
+        eater = skillEfect;
     }
 
     
