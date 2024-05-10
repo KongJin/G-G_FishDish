@@ -4,20 +4,27 @@ using UnityEngine;
 
 
 
-public class Fish : MonoBehaviour  
+public class Fish : MonoBehaviour  ,IMoveAble
 {
     public Spec spec { get; protected set; }
-    protected Vector3[] direction = new Vector3[] { Vector3.zero };
+    public Vector3[] direction { get; protected set; }
     
     protected RectTransform rectTransform;
-    protected IFishPool pool;
+    public IFishPool pool { get; protected set; }
 
     // Start is called before the first frame update
-    public void Init( Vector3 position ,IFishPool _pool, Spec _spec)
+    public void Init( Vector3 position ,IFishPool _pool, Spec _spec , Sprite sprite )
     {
         pool = _pool;
+        direction = new Vector3[] { Vector3.zero };
+        UnityEngine.UI.Image img = GetComponent<UnityEngine.UI.Image>();
+        img.sprite = sprite;
+        img.SetNativeSize();
+
         spec = _spec;
-        eater = new FishEat(spec, pool, this);
+
+
+        eater = EaterMaker.GetEater(this);            
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = position;
         if (position.x >0)
@@ -30,19 +37,24 @@ public class Fish : MonoBehaviour
             direction[0] = Vector3.right;
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
+
+        
+
+        mover = new FishMove(rectTransform);
         gameObject.SetActive(true);
     }
 
     protected virtual void Start()
     {
-        myLayer = (short)Define.LayerType.Indegenous;
-        mover = new FishMove(rectTransform);
+
+        gameObject.layer = myLayer = (short)Define.LayerType.Indegenous;
     }
 
     protected IMoveAble mover;
     void Update()
     {
-        mover.Move(direction[0]*spec.speed);
+
+        mover.Move(direction,spec.speed);
         if(rectTransform.localPosition.x <-Define.screenWide- Define.space || rectTransform.localPosition.x> Define.screenWide+ Define.space)
             pool.Release(this);
         
@@ -59,5 +71,9 @@ public class Fish : MonoBehaviour
             return;
         eater.Eat(_fish.spec.size);
     }
-  
+
+    public void Move(Vector3[] direction, float speed)
+    {
+        mover?.Move(direction,speed );
+    }
 }

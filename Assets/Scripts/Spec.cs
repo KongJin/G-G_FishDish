@@ -13,6 +13,8 @@ public abstract class Spec
     protected Spec(float _point, RectTransform _rectTransform)
     {
         rectTransform = _rectTransform;
+        speed = 0.7f;
+        size = 1;
         LevelUp(_point);
     }
 }
@@ -22,7 +24,7 @@ public class RandomSpec : Spec
   
     public override void LevelUp( float _point)
     {
-        size =  Random.Range(Define.minFloat*_point, _point);
+        size =  Random.Range(Define.minFloat*_point*2, _point);
         speed = Random.Range(Define.minFloat* _point, Define.minFloat*_point*5);
         rectTransform.localScale  = new Vector3(1,1,1)*  size;
     }
@@ -38,10 +40,10 @@ public class StandardSpec : Spec
         if (_point < Define.minFloat)
             _point = Define.minFloat;
 
-        size += _point;
+        size += _point/size ;
         speed += _point*Define.minFloat;
         rectTransform.localScale = new Vector3(1, 1, 1) *size;
     }
     
-    public StandardSpec(float _point, RectTransform rectTransform) : base(_point, rectTransform) { speed = 0.7f; }
+    public StandardSpec(float _point, RectTransform rectTransform) : base(_point, rectTransform) {  }
 }

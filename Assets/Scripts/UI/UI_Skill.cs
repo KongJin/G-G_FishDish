@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Mesh;
 
 public class UI_Skill : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class UI_Skill : MonoBehaviour
     public void Init(PlayableFish _fish)
     {
         fish = _fish;
-        timer = _fish.timer ;
+        timer = new CoolTime(_fish.fishData.coolTime, _fish.Base);
         skillOffImage.sprite = _fish.fishData.skillOffSprite;
         skillOnImage.sprite = _fish.fishData.skillOnSprite;
         gameObject.SetActive(true);

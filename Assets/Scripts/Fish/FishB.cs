@@ -11,7 +11,7 @@ public class FishB : PlayableFish
     {
         base.Start();
         temp = eater;
-        skillEfect = new DoubleEat(spec,adder);
+        skillEfect = EaterMaker.GetEater(Define.FishType.NEON,this);
     }
 
     protected override void BaseEffect()

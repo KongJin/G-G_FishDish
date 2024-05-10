@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IMoveAble
 {
-    public void Move(Vector3 direction);
+    public void Move(Vector3[] direction,float speed);
 }
 
 
@@ -16,9 +16,9 @@ public interface IMoveAble
         rectTransform = _rectTransform;
     }
 
-    public virtual void Move(Vector3 direction)
+    public virtual void Move(Vector3[] direction, float speed)
     {
-        rectTransform.position += direction * Time.deltaTime;
+        rectTransform.position += direction[0] * Time.deltaTime * speed;
     }
 }
 
@@ -27,30 +27,30 @@ class PlayerMove : FishMove
     public PlayerMove(RectTransform _rectTransform) : base(_rectTransform)
     {
     }
-    public override void Move(Vector3 direction)
+    public override void Move(Vector3[] direction, float speed)
     {
-        if (direction.y > 0 && rectTransform.localPosition.y > Define.screenHeight)
-            direction.y = 0;
-        else if (direction.y < 0 && rectTransform.localPosition.y < -Define.screenHeight)
-            direction.y = 0;
+        if (direction[0].y > 0 && rectTransform.localPosition.y > Define.screenHeight)
+            direction[0].y = 0;
+        else if (direction[0].y < 0 && rectTransform.localPosition.y < -Define.screenHeight)
+            direction[0].y = 0;
 
-        if (direction.x < 0)
+        if (direction[0].x < 0)
         {
             if (rectTransform.localPosition.x < -Define.screenWide)
                 rectTransform.localPosition = new Vector3(Define.screenWide, rectTransform.localPosition.y, rectTransform.localPosition.z);
         }
-        else if (direction.x > 0)
+        else if (direction[0].x > 0)
         {
             if (rectTransform.localPosition.x > Define.screenWide)
                 rectTransform.localPosition = new Vector3(-Define.screenWide, rectTransform.localPosition.y, rectTransform.localPosition.z);
         }
-        base.Move(direction );
+        base.Move(direction,speed );
     }
 }
 
 class Stop : IMoveAble
 {
-    public void Move(Vector3 direction)
+    public void Move(Vector3[] direction, float speed)
     {
         Debug.Log("얼어붙음");
     }

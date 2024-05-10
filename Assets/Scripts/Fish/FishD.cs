@@ -10,7 +10,7 @@ public class FishD : PlayableFish
     {
         base.Start();
         temp = eater;
-        skillEfect = new BigEat(spec, adder);
+        skillEfect = EaterMaker.GetEater(Define.FishType.SWORD, this);
     }
 
     //범위 증가, ,  

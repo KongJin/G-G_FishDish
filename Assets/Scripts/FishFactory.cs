@@ -25,13 +25,16 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     [SerializeField]
     TMPro.TextMeshProUGUI highScoreText;
 
+    [SerializeField]
+    Sprite[] fishImgs;
+
     Queue<Fish> fishQueue = new();
     public PlayableFish Birth(PlayableFish _fish, UI_Joystick joystick)
     {
         PlayableFish playfish = Instantiate(_fish, Vector3.zero, Quaternion.identity, transform);
 
         playfish.transform.SetParent(transform, false);
-        playfish.Init(Vector3.zero, new StandardSpec(1, playfish.GetComponent<RectTransform>()),this , joystick, this);
+        playfish.Init(Vector3.zero, new StandardSpec(0, playfish.GetComponent<RectTransform>()),this , joystick, this);
         
         return playfish;
     }
@@ -94,12 +97,10 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     {
         remainTime-=Time.deltaTime;
         if(remainTime>0)
-        {
             return;
-        }
         
         remainTime = Random.Range(Define.minFloat, MaxCreationInterval);
         Fish fish  =  Get();
-        fish.Init( GetRandomPosition(), this, new RandomSpec(curPoint*0.01f +3, fish.GetComponent<RectTransform>()));
+        fish.Init( GetRandomPosition(), this, new RandomSpec(curPoint*Define.minFloat +2, fish.GetComponent<RectTransform>()), fishImgs[Random.Range(0, (int)Define.FishType.MAX)]);
     }
 }

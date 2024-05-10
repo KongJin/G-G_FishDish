@@ -9,20 +9,23 @@ public abstract class PlayableFish : Fish
     [field:SerializeField]
     public FishData fishData { get; private set; }
 
-    public SkillTimer timer { get; private set; }
 
     public void Init(Vector3 position,  Spec _spec , IPointAdder _adder , UI_Joystick joystick , IFishPool _pool)
     {
         spec = _spec;
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = position;
-        timer = new CoolTime(fishData.coolTime,BaseEffect);
         gameObject.SetActive(true);
         Rigidbody2D rgbd= gameObject.AddComponent<Rigidbody2D>();
         rgbd.isKinematic = true;
         adder = _adder;
         pool = _pool;
+        direction = new Vector3[] { Vector3.zero };
         joystick.Init(transform, direction);
+
+        myLayer = (short)Define.LayerType.Player;
+        Effect = SkillEffect;
+        Base = BaseEffect;
     }
 
     protected override void Start()
@@ -33,20 +36,16 @@ public abstract class PlayableFish : Fish
         img.SetNativeSize();
         
 
-        Effect = SkillEffect;
-        Base = BaseEffect;
-        myLayer = (short)Define.LayerType.Player;
+        gameObject.layer = myLayer = (short)Define.LayerType.Player;
 
         mover = new PlayerMove(rectTransform);
-        eater = new PlayerFishEat(spec, adder);
+        eater = EaterMaker.GetEater(Define.FishType.MAX, this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (spec == null)
-            return;
-        mover.Move(direction[0] * spec.speed);
+        mover.Move(direction,spec.speed);
     }
     public Action Effect { get; protected set; }
     public Action Base { get; protected set; }
@@ -55,6 +54,6 @@ public abstract class PlayableFish : Fish
     protected abstract void BaseEffect();
 
 
-    protected IPointAdder adder;
-    
+    public IPointAdder adder { get; protected set; }
+
 }
