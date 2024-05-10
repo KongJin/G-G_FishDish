@@ -7,7 +7,7 @@ public class DataManager
 {
     int highScore;
     int curScore; // 사망처리 후 사용
-    public int HighScore { get { return highScore; } private set{} }
+    public int HighScore { get { return highScore; } }
 
     public DataManager()
     {
