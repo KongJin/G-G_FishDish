@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: FishB
   m_EditorClassIdentifier: 
   <fishName>k__BackingField: "\uB124\uC628\uD14C\uD2B8\uB77C"
-  <fishDescription>k__BackingField: "\uB124\uC628\uD14C\uD2B8\uB77C"
-  <fishSkill>k__BackingField: "\uC2A4\uD0AC 2 ( \uCFE8\uD0C0\uC784 : 6\uCD08 )"
+  <fishDescription>k__BackingField: "\uB098\uB294 \uBC18\uC9DD\uC5EC"
+  <fishSkillName>k__BackingField: "\uC810\uC218\uB97C \uBAA8\uC544\uBAA8\uC544 !"
+  <fishSkillDescription>k__BackingField: "5\uCD08\uAC04 \uD68D\uB4DD\uD558\uB294
+    \uC810\uC218\uAC00 2\uBC30\uAC00 \uB429\uB2C8\uB2E4 ( \uCFE8\uD0C0\uC784 6\uCD08
+    )"
   <coolTime>k__BackingField: 6
   <durationTime>k__BackingField: 5
   <fishSprite>k__BackingField: {fileID: 21300000, guid: b013b0b70dd733e46b9eab887073d3bf, type: 3}

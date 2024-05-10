@@ -5,15 +5,23 @@ using UnityEngine;
 
 public class DataManager 
 {
-    int[] highscore;
-    void SetHighScore( int score)//case 1
+    int highScore;
+    int curScore; // 사망처리 후 사용
+    public int HighScore { get { return highScore; } private set{} }
+
+    public DataManager()
     {
+        // PlayerPrefs.DeleteKey("HighScore");
+        int.TryParse(PlayerPrefs.GetString("HighScore"), out highScore);
     }
 
-    void StartAction(Action<int[]> deligate)//case 2
+    public void SetHighScore(int score)
     {
-        deligate.Invoke(highscore);
+        curScore = score;
+        PlayerPrefs.SetString("HighScore", highScore.ToString()); // 사망처리 추가시 제거
+        // if(highScore < curScore)
+        // {
+        //     PlayerPrefs.SetString("HighScore", highScore.ToString());
+        // }
     }
-
-
 }

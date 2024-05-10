@@ -22,6 +22,8 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     Fish fish;
     [SerializeField]
     TMPro.TextMeshProUGUI pointUI;
+    [SerializeField]
+    TMPro.TextMeshProUGUI highScoreText;
 
     Queue<Fish> fishQueue = new();
     public PlayableFish Birth(PlayableFish _fish, UI_Joystick joystick)
@@ -53,6 +55,8 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     {
         curPoint += (int)(size*10);
         pointUI.text = curPoint.ToString();
+        GameManager.Data.SetHighScore(curPoint);
+        highScoreText.text = GameManager.Data.HighScore.ToString();
     }
 
     public void Release(Fish element)
@@ -80,7 +84,7 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
 
     void Start()
     {
-        
+        highScoreText.text = GameManager.Data.HighScore.ToString();
     }
 
     // Update is called once per frame

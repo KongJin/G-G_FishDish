@@ -8,7 +8,8 @@ public class FishData : ScriptableObject
 {
     [field:SerializeField] public string fishName { get; private set; }
     [field: SerializeField] public string fishDescription { get; private set; }
-    [field: SerializeField] public string fishSkill { get; private set; }
+    [field: SerializeField] public string fishSkillName { get; private set; }
+    [field: SerializeField] public string fishSkillDescription { get; private set; }
     [field: SerializeField] public float coolTime { get; private set; }
     [field: SerializeField] public float durationTime { get; private set; }
     [field: SerializeField] public Sprite fishSprite { get; private set; }
