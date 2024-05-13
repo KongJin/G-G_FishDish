@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Security.Cryptography;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -32,15 +33,18 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         fishTransform = _fishTransform;
         fishPoint = _fishPoint;
-        arrow = Instantiate(arrow, _fishTransform);
-        
+        UI_Arrow temp =_fishTransform.GetComponentInChildren<UI_Arrow>();
+        ratio = 0;
+         arrow = temp ?? Instantiate(arrow, _fishTransform);
+         change = 1;
+        point = Vector2.zero;
     }
 
     public void Start()
     {
         joystickOriginalPos = RectTransformUtility.WorldToScreenPoint(Camera.main, joystickBG.position) ;
         joystickRadius = joystickBG.sizeDelta.y / 4f;
-        change = 1;
+       
         
     }
     private void Update()
@@ -80,6 +84,8 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         moveDir = (pressPoint - joystickOriginalPos).normalized;
         handler.localPosition = moveDir* dist*2;//+_joystickTouchPos 
+
+        arrow.transform.localScale = Vector3.one* 1/transform.localScale.x;
 
         if (moveDir.x < 0 != change < 0)
         {

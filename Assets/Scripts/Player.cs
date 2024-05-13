@@ -11,22 +11,18 @@ public class Player : MonoBehaviour
     UI_Skill skillUI;
     [SerializeField]
     UI_Joystick joystickUI;
+    [SerializeField]
+    AudioClip clip;
 
-    public void GameStart(PlayableFish _fish)
+    PlayableFish fish;
+    public void GameStart(PlayableFish _fish = null)
     {
-        _fish = factory.Birth(_fish,joystickUI );
-        skillUI.Init(_fish);
+        fish = factory.Birth(_fish?_fish:fish,joystickUI );
+        skillUI.Init(fish);
         
     }
-
-    void Start()
+    private void OnEnable()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameManager.Sound.PlayBGM(clip);
     }
 }

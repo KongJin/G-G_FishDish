@@ -62,12 +62,16 @@ class PlayerFishEat : IEatAble
     {
         if (size > spec.size)
         {
-
+            adder.GameOver();
+            AudioClip clip = GameManager.Resources.GetClip(ResourcesManager.SoundType.Effect, (int)ResourcesManager.EffectClip.nomnom);
+            GameManager.Sound.PlayEffect(clip);
         }
         else
         {
             spec.LevelUp(size * Define.minFloat);
             adder.AddPoint(size);
+            AudioClip clip = GameManager.Resources.GetClip(ResourcesManager.SoundType.Effect, (int)ResourcesManager.EffectClip.gulp);
+            GameManager.Sound.PlayEffect(clip);
         }
     }
 }

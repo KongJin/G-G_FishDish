@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FishE : PlayableFish
@@ -8,10 +9,10 @@ public class FishE : PlayableFish
     Fish target;
     Vector3[] left = new Vector3[1] { Vector3.left };
     Vector3[] right= new Vector3[1] { Vector3.right };
+
     protected override void Start()
     {
         base.Start();
-
     }
     protected override void BaseEffect()
     {
@@ -19,17 +20,21 @@ public class FishE : PlayableFish
 
     protected override void SkillEffect()
     {
-        Physics2D.OverlapCircleNonAlloc(rectTransform.position, spec.size*1.2f, collisionTargets);
+        Physics2D.OverlapCircleNonAlloc(rectTransform.position, spec.size, collisionTargets);
         foreach (Collider2D collider in collisionTargets)
         {
-            collider?.TryGetComponent(out target);
+            if (collider == null )
+                continue;
 
+            collider.TryGetComponent(out target);
             if(target==null||target.gameObject.layer==myLayer)
                 continue;
-            target.Move(target.direction[0] == left[0] ?  right: left, target.spec.speed);
+
+            target.Move(target.direction[0].x < 0 ?  right: left, target.spec.speed);
+            target = null;
+
         }
 
     }
-
 
 }

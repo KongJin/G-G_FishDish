@@ -9,14 +9,16 @@ public abstract class PlayableFish : Fish
     [field:SerializeField]
     public FishData fishData { get; private set; }
 
-
     public void Init(Vector3 position,  Spec _spec , IPointAdder _adder , UI_Joystick joystick , IFishPool _pool)
     {
         spec = _spec;
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = position;
         gameObject.SetActive(true);
-        Rigidbody2D rgbd= gameObject.AddComponent<Rigidbody2D>();
+
+        Rigidbody2D rgbd= GetComponent<Rigidbody2D>();
+        if( rgbd == null )
+            rgbd= gameObject.AddComponent<Rigidbody2D>();
         rgbd.isKinematic = true;
         adder = _adder;
         pool = _pool;

@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     }
     
     private DataManager dataManager;
+    [SerializeField]
     private ResourcesManager resourcesManager;
+    [SerializeField]
     private SoundManager soundManager;
     private Define global;
 
@@ -31,8 +33,6 @@ public class GameManager : MonoBehaviour
         if (instance != null && instance != this) Destroy(gameObject);
 
         dataManager = new();
-        resourcesManager = new();
-        soundManager = new();
         global = new();
     }
 

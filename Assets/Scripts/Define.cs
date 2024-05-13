@@ -23,12 +23,6 @@ public class Define
     public static readonly float minFloat = 0.1f;
     public static readonly int space = 50;
 
-    public enum Sound
-    {
-        Bgm,
-        SubBgm,
-        Effect,
-        Max,
-    }
+    
 
 }

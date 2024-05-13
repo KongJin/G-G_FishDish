@@ -90,6 +90,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <fishData>k__BackingField: {fileID: 11400000, guid: 6cb7efcfc7971a3438c78745ff917fb0, type: 2}
+  fishImgs:
+  - {fileID: 21300000, guid: 3cb00560897113c48894b4759348c7b8, type: 3}
+  - {fileID: 21300000, guid: f39db3253d079424ca89d887519972b1, type: 3}
+  - {fileID: 21300000, guid: 85fdfeffe76df874f8f7b9c757a3e4c2, type: 3}
+  - {fileID: 21300000, guid: 6c4fc7475ea359c4f8b65e08ec6c927f, type: 3}
+  - {fileID: 21300000, guid: 762fd3e3f6c4be9468390e86b184669a, type: 3}
 --- !u!70 &9119280777315205330
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

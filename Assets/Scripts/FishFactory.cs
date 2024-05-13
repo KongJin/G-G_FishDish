@@ -1,6 +1,6 @@
+
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public interface IFishPool
@@ -11,13 +11,14 @@ public interface IFishPool
 public interface IPointAdder
 {
     public void AddPoint(float size);
+    public void GameOver();
 }
 
 public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
 {
-    int curPoint;
     [SerializeField]
     Transform pools;
+
     [SerializeField]
     Fish fish;
     [SerializeField]
@@ -29,13 +30,26 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     Sprite[] fishImgs;
 
     Queue<Fish> fishQueue = new();
+    PlayableFish obj;
+    LinkedList<Fish> liveFishs = new();
+
     public PlayableFish Birth(PlayableFish _fish, UI_Joystick joystick)
     {
-        PlayableFish playfish = Instantiate(_fish, Vector3.zero, Quaternion.identity, transform);
-
-        playfish.transform.SetParent(transform, false);
-        playfish.Init(Vector3.zero, new StandardSpec(0, playfish.GetComponent<RectTransform>()),this , joystick, this);
+        curPoint = 0;
+        AddPoint(0);
         
+        while (liveFishs.First != null)
+        {
+            Release(liveFishs.First.Value);
+        }
+        PlayableFish playfish = Instantiate(_fish, Vector3.zero, Quaternion.identity, pools);
+
+        playfish.transform.SetParent(pools, false);
+        playfish.Init(Vector3.zero, new StandardSpec(0, playfish.GetComponent<RectTransform>()),this , joystick, this);
+
+        if (obj != null)
+            Destroy(obj.gameObject);
+        obj = playfish;
         return playfish;
     }
 
@@ -50,21 +64,15 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
             _fish = Instantiate(fish, Vector3.zero, Quaternion.identity, pools);//
             _fish.transform.SetParent(pools, false);
         }
-        
+        liveFishs.AddLast(_fish);
         return _fish ;
     }
 
-    public void AddPoint(float size)
-    {
-        curPoint += (int)(size*10);
-        pointUI.text = curPoint.ToString();
-        GameManager.Data.SetHighScore(curPoint);
-        highScoreText.text = GameManager.Data.HighScore.ToString();
-    }
 
     public void Release(Fish element)
     {
         element.gameObject.SetActive(false);
+        liveFishs.Remove(element);
         fishQueue.Enqueue(element);
     }
 
@@ -101,6 +109,23 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
         
         remainTime = Random.Range(Define.minFloat, MaxCreationInterval);
         Fish fish  =  Get();
-        fish.Init( GetRandomPosition(), this, new RandomSpec(curPoint*Define.minFloat +2, fish.GetComponent<RectTransform>()), fishImgs[Random.Range(0, (int)Define.FishType.MAX)]);
+        fish.Init( GetRandomPosition(), this, new RandomSpec(curPoint*0.03f* Define.minFloat +3, fish.GetComponent<RectTransform>()), fishImgs[Random.Range(0, (int)Define.FishType.MAX)]);
+    }
+
+    int curPoint;
+    public void AddPoint(float size)
+    {
+        curPoint += (int)(size * 10);
+        pointUI.text = curPoint.ToString();
+        GameManager.Data.SetHighScore(curPoint);
+        highScoreText.text = GameManager.Data.HighScore.ToString();
+    }
+
+
+    [SerializeField]
+    UI_GameOver GameOverUI;
+    public void GameOver()
+    {
+        GameOverUI.ShowGameOver(curPoint, GameManager.Data.HighScore);
     }
 }
