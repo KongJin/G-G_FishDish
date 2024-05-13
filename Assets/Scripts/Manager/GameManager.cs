@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
         dataManager = new();
         global = new();
+        resourcesManager = new();
     }
 
     static void Initialize()

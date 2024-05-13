@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourcesManager:MonoBehaviour
+public class ResourcesManager
 {
-
-
     AudioClip[][] Clips;
     
-    private void Awake()
+    public ResourcesManager()
     {
         Clips = new AudioClip[(int)SoundType.Max][];
         Clips[(int)SoundType.BGM] = Resources.LoadAll<AudioClip>("Sounds/BGM");
         Clips[(int)SoundType.Effect] = Resources.LoadAll<AudioClip>("Sounds/Effect");
     }
+
     public enum SoundType
     {
         BGM,
@@ -21,6 +20,7 @@ public class ResourcesManager:MonoBehaviour
         Effect,
         Max,
     }
+
     public enum BGMClip
     {
         latale,
@@ -38,13 +38,13 @@ public class ResourcesManager:MonoBehaviour
         pop,
         Max,
     }
+
     public AudioClip GetClip(SoundType type, int index)
     {
         if (Clips[(int)type][index]==null)
         {
             Debug.Log($"AudioClip GetClip : null type = {type}, index = {index}");
         }
-        
         return Clips[(int)type][index];
     }
 }

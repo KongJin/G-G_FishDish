@@ -64,7 +64,7 @@ public class Fish : MonoBehaviour  ,IMoveAble
    
     protected short myLayer;
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerStay2D(Collider2D other)
     {
         Fish _fish = other.GetComponent<Fish>();
         if ( _fish.gameObject.layer == myLayer)
