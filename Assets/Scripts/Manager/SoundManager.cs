@@ -47,7 +47,53 @@ public class SoundManager:MonoBehaviour
     private AudioSource EffectSource;
     public void PlayEffect(AudioClip clip)
     {
-        EffectSource.clip = clip;
-        EffectSource.Play();
+        // EffectSource.clip = clip;
+        EffectSource.PlayOneShot(clip);
     }
+    
+    // public SFX sfxPlayer;
+    // public BGM bgmPlayer;
+
+    // bool isSFXMuted;
+    // public bool IsSFXMuted
+    // {
+    //     get
+    //     {
+    //         int muted = PlayerPrefs.GetInt("SFXOption");
+    //         isSFXMuted = muted == 1;
+    //         return isSFXMuted;
+    //     }
+    //     set
+    //     {
+    //         isSFXMuted = value;
+    //         int muted = value == true ? 1 : 0;
+    //         PlayerPrefs.SetInt("SFXOption", muted);
+    //     }
+    // }
+
+    // bool isBGMMuted;
+    // public bool IsBGMMuted
+    // {
+    //     get
+    //     {
+    //         int muted = PlayerPrefs.GetInt("BGMOption");
+    //         isSFXMuted = muted == 1;
+    //         return isSFXMuted;
+    //     }
+    //     set
+    //     {
+    //         isSFXMuted = value;
+    //         int muted = value == true ? 1 : 0;
+    //         PlayerPrefs.SetInt("BGMOption", muted);
+    //     }
+    // }
+
+    // public SoundManager()
+    // {
+    //     sfxPlayer = GameManager.Instance.GetComponentInChildren<SFX>();
+    //     bgmPlayer = GameManager.Instance.GetComponentInChildren<BGM>();
+
+    //     sfxPlayer.Initialize();
+    //     bgmPlayer.Initialize();
+    // }
 }
