@@ -30,6 +30,9 @@ public class ShowWindow : MonoBehaviour
     PlayableFish[] fishes;
     int curIndex;
 
+    [SerializeField]
+    GameObject blind;
+
     public void PassOver(int direction)//-1,1
     {
         int index = direction * -1;
@@ -39,9 +42,20 @@ public class ShowWindow : MonoBehaviour
         }
         curIndex += + index;
         remainMove +=  distInterval * direction;
-        
+
         startTime = Time.time;
 
+        for (int i =0;i <= curIndex; i++)
+        {
+            if(fishes[i].fishData.liftingScore > GameManager.Data.GetHighScore(i))
+            {
+
+                blind.SetActive(true);
+                return;
+            }
+        }
+        blind.SetActive(false);
+        
         fishName.text = fishes[curIndex].fishData.fishName;
         description.text = fishes[curIndex].fishData.fishDescription;
         fishSkillName.text = fishes[curIndex].fishData.fishSkillName;
@@ -66,4 +80,5 @@ public class ShowWindow : MonoBehaviour
     {
         player.GameStart(fishes[curIndex]);
     }
+
 }

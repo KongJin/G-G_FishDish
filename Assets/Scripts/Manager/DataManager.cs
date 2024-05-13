@@ -5,40 +5,46 @@ using UnityEngine;
 
 public class DataManager 
 {
-    int highScore;
+    int[] highScores;
     
-    public int HighScore { get { return highScore; } }
-
-    public int Money { get; private set; }
+    public int GetHighScore(int type)
+    {
+        return highScores[type];
+    }
+    int money;
+    public int Money { get { return money; } }
 
     public DataManager()
     {
-        // PlayerPrefs.DeleteKey("HighScore");
-        int.TryParse(PlayerPrefs.GetString("HighScore"), out highScore);
-
-    }
-
-    public void SetHighScore(int score)
-    {
-        if(highScore< score)
+        highScores = new int[(int)Define.FishType.MAX];
+        for (int i =0; i<(int)Define.FishType.MAX; i++)
         {
-            highScore=score;
-            PlayerPrefs.SetString("HighScore", highScore.ToString()); // 사망처리 추가시 제거
+            string temp = PlayerPrefs.GetString($"HighScore_{i}");
+            if(temp == String.Empty)
+                temp = "0";
+            highScores[i] = int.Parse(temp);
         }
-        // if(highScore < curScore)
-        // {
-        //     PlayerPrefs.SetString("HighScore", highScore.ToString());
-        // }
+        int.TryParse("Money", out money);
     }
+    
+    public void SetHighScore(int score, int type )
+    {
+        if(highScores[type] < score)
+        {
+            highScores[type] = score;
+            PlayerPrefs.SetString($"HighScore_{type}", highScores[type].ToString());
+        }
+        ChangeMoney(score);
+    }
+
     public bool ChangeMoney(int variance)
     {
-
-        if(Money+ variance<0)
+        if(money+ variance<0)
         {
             return false;
         }
-
-
+        money += variance;
+        PlayerPrefs.SetString("Money", money.ToString());
         return true;
     }
 

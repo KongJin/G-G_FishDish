@@ -10,6 +10,8 @@ public class FishE : PlayableFish
     Vector3[] left = new Vector3[1] { Vector3.left };
     Vector3[] right= new Vector3[1] { Vector3.right };
 
+    public override int fishType => (int)Define.FishType.PLATI;
+
     protected override void Start()
     {
         base.Start();

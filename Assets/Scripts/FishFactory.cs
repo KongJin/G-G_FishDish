@@ -36,7 +36,7 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     public PlayableFish Birth(PlayableFish _fish, UI_Joystick joystick)
     {
         curPoint = 0;
-        AddPoint(0);
+        
         
         while (liveFishs.First != null)
         {
@@ -50,6 +50,7 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
         if (obj != null)
             Destroy(obj.gameObject);
         obj = playfish;
+        AddPoint(0);
         return playfish;
     }
 
@@ -95,11 +96,11 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
 
     void Start()
     {
-        highScoreText.text = GameManager.Data.HighScore.ToString();
+        highScoreText.text = GameManager.Data.GetHighScore(obj.fishType).ToString();
     }
 
     // Update is called once per frame
-    float MaxCreationInterval = 1.5f;
+    float MaxCreationInterval = 1f;
     float remainTime = 0f;
     void Update()
     {
@@ -117,8 +118,8 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     {
         curPoint += (int)(size * 10);
         pointUI.text = curPoint.ToString();
-        GameManager.Data.SetHighScore(curPoint);
-        highScoreText.text = GameManager.Data.HighScore.ToString();
+        GameManager.Data.SetHighScore(curPoint, obj.fishType);
+        highScoreText.text = GameManager.Data.GetHighScore(obj.fishType).ToString();
     }
 
 
@@ -126,6 +127,6 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     UI_GameOver GameOverUI;
     public void GameOver()
     {
-        GameOverUI.ShowGameOver(curPoint, GameManager.Data.HighScore);
+        GameOverUI.ShowGameOver(curPoint, GameManager.Data.GetHighScore(obj.fishType));
     }
 }

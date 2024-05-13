@@ -6,7 +6,8 @@ using static Define;
 
 public interface IEatAble
 {
-    public void Eat(float size);
+    public void Eat(float size, IEatAble fish);
+    public void Eaten(float size);
 }
 class EaterMaker
 {
@@ -25,7 +26,7 @@ class EaterMaker
             case FishType.SWORD:
                 return new BigEat(fish.spec, fish.adder);
             default: 
-                return new PlayerFishEat(fish.spec, fish.adder);
+                return new PlayerFishEat(fish.spec, fish.adder,1);
         }
     }
 }
@@ -40,109 +41,82 @@ class FishEat : IEatAble
         pool = _pool;
         fish = _fish;
     }
-    public void Eat(float size)
+    public void Eat(float size, IEatAble fish)
     {
-        if (size > spec.size) 
-        { 
-            pool.Release(fish); 
-        }
+        fish.Eaten(spec.size);
+    }
+
+    public void Eaten(float size)
+    {
+        pool.Release(fish);
+        AudioClip clip = GameManager.Resources.GetClip(ResourcesManager.SoundType.Effect, (int)ResourcesManager.EffectClip.gulp);
+        GameManager.Sound.PlayEffect(clip);
     }
 }
 
 class PlayerFishEat : IEatAble
 {
-    Spec spec;
-    IPointAdder adder;
-    public PlayerFishEat(Spec _spec, IPointAdder _adder)
+    protected Spec spec;
+    protected IPointAdder adder;
+    protected float ratio;
+    public PlayerFishEat(Spec _spec, IPointAdder _adder, float _ratio)
     {
         spec = _spec;
         adder = _adder;
+        ratio = _ratio;
     }
-    public void Eat(float size)
+    public void Eat(float size, IEatAble fish)
     {
-        if (size > spec.size)
+        if (size <= spec.size * ratio)
+        {
+            VirtualEat(size, fish);
+            fish.Eaten(spec.size);
+        }
+    }
+    public virtual void Eaten(float size)
+    {
+        if(size > spec.size * ratio)
         {
             adder.GameOver();
             AudioClip clip = GameManager.Resources.GetClip(ResourcesManager.SoundType.Effect, (int)ResourcesManager.EffectClip.nomnom);
             GameManager.Sound.PlayEffect(clip);
         }
-        else
-        {
-            spec.LevelUp(size * Define.minFloat);
-            adder.AddPoint(size);
-            AudioClip clip = GameManager.Resources.GetClip(ResourcesManager.SoundType.Effect, (int)ResourcesManager.EffectClip.gulp);
-            GameManager.Sound.PlayEffect(clip);
-        }
+    }
+    protected virtual void VirtualEat(float size, IEatAble fish)
+    {
+        spec.LevelUp(size * minFloat);
+        adder.AddPoint(size);
     }
 }
 
-class DefenceEat : IEatAble
+class DefenceEat : PlayerFishEat
 {
-    Spec spec;
-    IPointAdder adder;
-    public DefenceEat(Spec _spec, IPointAdder _adder)
-    {
-        spec = _spec;
-        adder = _adder;
+    public DefenceEat(Spec _spec, IPointAdder _adder) : base(_spec, _adder,1)  
+    {   
     }
-    public void Eat(float size)
+    public override void Eaten(float size)
     {
-        if (size > spec.size)
-        {
-
-        }
-        else
-        {
-            spec.LevelUp(size * Define.minFloat);
-            adder.AddPoint(size);
-        }
     }
 }
 
 
-class DoubleEat : IEatAble
+class DoubleEat : PlayerFishEat
 {
-    Spec spec;
-    IPointAdder adder;
-    public DoubleEat(Spec _spec, IPointAdder _adder)
+    public DoubleEat(Spec _spec, IPointAdder _adder) : base(_spec, _adder,1)
     {
-        spec = _spec;
-        adder = _adder;
     }
-    public void Eat(float size)
+    protected override void VirtualEat(float size, IEatAble fish)
     {
-        if (size > spec.size)
-        {
 
-        }
-        else
-        {
-            spec.LevelUp(size * Define.minFloat);
-            adder.AddPoint(size);
-            adder.AddPoint(size);
-        }
+        spec.LevelUp(size * minFloat);
+        adder.AddPoint(size);
+        adder.AddPoint(size);
     }
 }
 
-class BigEat : IEatAble
+class BigEat : PlayerFishEat
 {
-    Spec spec;
-    IPointAdder adder;
-    public BigEat(Spec _spec, IPointAdder _adder)
+    public BigEat(Spec _spec, IPointAdder _adder) : base(_spec, _adder,1.5f)
     {
-        spec = _spec;
-        adder = _adder;
-    }
-    public void Eat(float size)
-    {
-        if (size > spec.size*1.5f)
-        {
-
-        }
-        else
-        {
-            spec.LevelUp(size * Define.minFloat);
-            adder.AddPoint(size);
-        }
     }
 }

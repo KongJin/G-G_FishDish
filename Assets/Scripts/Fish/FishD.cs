@@ -6,6 +6,9 @@ public class FishD : PlayableFish
 {
     IEatAble temp;
     IEatAble skillEfect;
+
+    public override int fishType => (int)Define.FishType.SWORD;
+
     protected override void Start()
     {
         base.Start();

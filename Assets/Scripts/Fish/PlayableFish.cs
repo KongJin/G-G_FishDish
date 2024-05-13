@@ -8,6 +8,7 @@ public abstract class PlayableFish : Fish
 {
     [field:SerializeField]
     public FishData fishData { get; private set; }
+    public abstract int fishType { get; }
 
     public void Init(Vector3 position,  Spec _spec , IPointAdder _adder , UI_Joystick joystick , IFishPool _pool)
     {

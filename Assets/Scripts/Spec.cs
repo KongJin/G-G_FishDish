@@ -40,7 +40,7 @@ public class StandardSpec : Spec
         if (_point < Define.minFloat)
             _point = Define.minFloat;
 
-        size += _point/size ;
+        size += _point/size*1.5f ;
         speed += _point*Define.minFloat;
         rectTransform.localScale = new Vector3(1, 1, 1) *size;
     }

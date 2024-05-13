@@ -69,7 +69,7 @@ public class Fish : MonoBehaviour  ,IMoveAble
         Fish _fish = other.GetComponent<Fish>();
         if ( _fish.gameObject.layer == myLayer)
             return;
-        eater.Eat(_fish.spec.size);
+        eater.Eat(_fish.spec.size,_fish.eater);
     }
 
     public void Move(Vector3[] direction, float speed)

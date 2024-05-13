@@ -12,6 +12,9 @@ public class FishC : PlayableFish
 
     [SerializeField]
     Sprite[] fishImgs;
+
+    public override int fishType => (int)Define.FishType.CORI;
+
     protected override void BaseEffect()
     {
 

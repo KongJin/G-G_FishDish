@@ -7,6 +7,8 @@ public class FishB : PlayableFish
 
     IEatAble temp;
     IEatAble skillEfect;
+
+    public override int fishType => (int)Define.FishType.NEON;
     protected override void Start()
     {
         base.Start();

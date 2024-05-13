@@ -15,5 +15,6 @@ public class FishData : ScriptableObject
     [field: SerializeField] public Sprite fishSprite { get; private set; }
     [field: SerializeField] public Sprite skillOnSprite { get; private set; }
     [field: SerializeField] public Sprite skillOffSprite { get; private set; }
+    [field: SerializeField] public int liftingScore { get; private set; }
 
 }

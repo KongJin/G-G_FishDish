@@ -10,6 +10,7 @@ public class Define
         NEON,
         CORI,
         SWORD,
+        PLATI,
         MAX
     }
     public enum LayerType

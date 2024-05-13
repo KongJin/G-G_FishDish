@@ -55,9 +55,8 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 ratio -= Time.deltaTime;
             point -= point * Time.deltaTime;
         }
-            
+
         SetPoint();
-        
     }
 
     void SetPoint()
