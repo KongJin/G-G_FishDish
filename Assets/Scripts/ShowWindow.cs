@@ -72,7 +72,7 @@ public class ShowWindow : MonoBehaviour
 
     }
 
-    void Start()
+    void OnEnable()
     {
         PassOver(0);
     }

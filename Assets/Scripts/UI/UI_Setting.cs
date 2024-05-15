@@ -82,17 +82,19 @@ public class UI_Setting : MonoBehaviour
         GameManager.Sound.IsSFXMuted = true;
     }
 
-    public void JoyStickLeftButtonClick()
+    public void JoyStickLeftButtonClick(Player player)
     {
         joystickLeft.SetActive(true);
         joystickRight.SetActive(false);
         GameManager.Data.NowJoystick = false;
+        player.JoyStickPos();
     }
 
-    public void JoyStickRightButtonClick()
+    public void JoyStickRightButtonClick(Player player)
     {
         joystickRight.SetActive(true);
         joystickLeft.SetActive(false);
         GameManager.Data.NowJoystick = true;
+        player.JoyStickPos();
     }
 }

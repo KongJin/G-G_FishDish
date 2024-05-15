@@ -42,11 +42,10 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void Start()
     {
-        joystickOriginalPos = RectTransformUtility.WorldToScreenPoint(Camera.main, joystickBG.position) ;
+        SetJoyStickPos();
         joystickRadius = joystickBG.sizeDelta.y / 4f;
-       
-        
     }
+
     private void Update()
     {
         if(!pressing)
@@ -57,6 +56,11 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
 
         SetPoint();
+    }
+
+    public void SetJoyStickPos()
+    {
+        joystickOriginalPos = RectTransformUtility.WorldToScreenPoint(Camera.main, joystickBG.position) ;
     }
 
     void SetPoint()
