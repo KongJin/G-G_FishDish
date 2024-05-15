@@ -9,12 +9,13 @@ public class ShowWindow : MonoBehaviour
     
     [SerializeField]
     RectTransform fishWindow;
-    
-    [SerializeField]
-    TextMeshProUGUI description;
+
 
     [SerializeField]
     TextMeshProUGUI fishName;
+
+    [SerializeField]
+    TextMeshProUGUI description;
 
     [SerializeField]
     TextMeshProUGUI fishSkillName;
@@ -31,8 +32,14 @@ public class ShowWindow : MonoBehaviour
     int curIndex;
 
     [SerializeField]
+    TextMeshProUGUI highScore;
+
+    [SerializeField]
     GameObject blind;
 
+
+    [SerializeField]
+    Enchanter enchanter;
     public void PassOver(int direction)//-1,1
     {
         int index = direction * -1;
@@ -44,30 +51,30 @@ public class ShowWindow : MonoBehaviour
         remainMove +=  distInterval * direction;
 
         startTime = Time.time;
-
-        for (int i =0;i <= curIndex; i++)
+        int liftingScore = fishes[curIndex].fishData.liftingScore;
+        for (int i =0;i < curIndex; i++)
         {
-            if(fishes[i].fishData.liftingScore > GameManager.Data.GetHighScore(i))
+            if(liftingScore > GameManager.Data.GetHighScore(i))
             {
-
                 blind.SetActive(true);
                 return;
             }
         }
         blind.SetActive(false);
-        
+
+        highScore.text = GameManager.Data.GetHighScore(curIndex).ToString();
         fishName.text = fishes[curIndex].fishData.fishName;
         description.text = fishes[curIndex].fishData.fishDescription;
         fishSkillName.text = fishes[curIndex].fishData.fishSkillName;
-        fishSkillDescription.text = fishes[curIndex].fishData.fishSkillDescription;
+        fishSkillDescription.text = fishes[curIndex].GetDescription(enchanter.GetEnchant(0,curIndex), enchanter.GetEnchant(1, curIndex));
+        
+        enchanter.SetFish(curIndex, fishes[curIndex].fishData);
+
     }
 
     void Start()
     {
-        fishName.text = fishes[curIndex].fishData.fishName;
-        description.text = fishes[curIndex].fishData.fishDescription;
-        fishSkillName.text = fishes[curIndex].fishData.fishSkillName;
-        fishSkillDescription.text = fishes[curIndex].fishData.fishSkillDescription;
+        PassOver(0);
     }
 
     void Update()
@@ -76,9 +83,11 @@ public class ShowWindow : MonoBehaviour
         fishWindow.localPosition = Vector3.Lerp(fishWindow.localPosition, Vector3.right * remainMove, t);
     }
 
+
     public void GameStart(Player player)
     {
         player.GameStart(fishes[curIndex]);
     }
+
 
 }

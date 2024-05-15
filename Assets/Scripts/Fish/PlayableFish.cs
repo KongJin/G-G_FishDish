@@ -59,4 +59,6 @@ public abstract class PlayableFish : Fish
 
     public IPointAdder adder { get; protected set; }
 
+    public abstract string GetDescription(float coolLevel, float duraLevel);
+
 }

@@ -24,6 +24,6 @@ public class Define
     public static readonly float minFloat = 0.1f;
     public static readonly int space = 50;
 
-    
+    public static readonly int maxUpgrade = 10;
 
 }

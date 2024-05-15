@@ -26,5 +26,8 @@ public class FishB : PlayableFish
         eater = skillEfect;
     }
 
-    
+    public override string GetDescription(float coolLevel, float duraLevel)
+    {
+        return $"{fishData.durationTime + duraLevel * fishData.duraUpgradeRatio}초간 획득하는 점수가 2배가 됩니다 ( 쿨타임 {fishData.coolTime - coolLevel * fishData.coolUpgradeRatio}초 )";
+    }
 }

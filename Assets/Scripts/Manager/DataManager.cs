@@ -30,15 +30,15 @@ public class DataManager
         highScores = new int[(int)Define.FishType.MAX];
         for (int i =0; i<(int)Define.FishType.MAX; i++)
         {
-            string temp = PlayerPrefs.GetString($"HighScore_{i}");
-            if(temp == String.Empty)
-                temp = "0";
-            highScores[i] = int.Parse(temp);
+            highScores[i] = PlayerPrefs.GetInt($"HighScore_{i}");
         }
-        int.TryParse("Money", out money);
+
 
         int joystickPos = PlayerPrefs.GetInt("JoyStickPos");
         nowJoystick = joystickPos == 1;
+
+        money = PlayerPrefs.GetInt("Money");
+
     }
     
     public void SetHighScore(int score, int type )
@@ -46,9 +46,8 @@ public class DataManager
         if(highScores[type] < score)
         {
             highScores[type] = score;
-            PlayerPrefs.SetString($"HighScore_{type}", highScores[type].ToString());
+            PlayerPrefs.SetInt($"HighScore_{type}", highScores[type]);
         }
-        ChangeMoney(score);
     }
 
     public bool ChangeMoney(int variance)
@@ -58,7 +57,7 @@ public class DataManager
             return false;
         }
         money += variance;
-        PlayerPrefs.SetString("Money", money.ToString());
+        PlayerPrefs.SetInt("Money", money);
         return true;
     }
 

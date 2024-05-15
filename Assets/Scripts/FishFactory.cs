@@ -33,6 +33,38 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     PlayableFish obj;
     LinkedList<Fish> liveFishs = new();
 
+
+    int[] highScores;
+
+    public int GetHighScore(int type)
+    {
+        return highScores[type];
+    }
+    int money;
+    public int Money { get { return money; } }
+
+
+    public void SetHighScore(int score, int type)
+    {
+        if (highScores[type] < score)
+        {
+            highScores[type] = score;
+            PlayerPrefs.SetInt($"HighScore_{type}", highScores[type]);
+        }
+        ChangeMoney(score);
+    }
+
+    public bool ChangeMoney(int variance)
+    {
+        if (money + variance < 0)
+        {
+            return false;
+        }
+        money += variance;
+        PlayerPrefs.SetString("Money", money.ToString());
+        return true;
+    }
+
     public PlayableFish Birth(PlayableFish _fish, UI_Joystick joystick)
     {
         curPoint = 0;
@@ -116,10 +148,13 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     int curPoint;
     public void AddPoint(float size)
     {
-        curPoint += (int)(size * 10);
+        int addPoint = (int)(size * 10);
+        curPoint += addPoint;
+        GameManager.Data.ChangeMoney(addPoint);
         pointUI.text = curPoint.ToString();
         GameManager.Data.SetHighScore(curPoint, obj.fishType);
         highScoreText.text = GameManager.Data.GetHighScore(obj.fishType).ToString();
+        
     }
 
 

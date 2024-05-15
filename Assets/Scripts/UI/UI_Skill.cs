@@ -14,12 +14,13 @@ public class UI_Skill : MonoBehaviour
     UnityEngine.UI.Image skillOnImage;
     [SerializeField]
     TMPro.TextMeshProUGUI textMeshProUGUI;
-
+    [SerializeField]
+    Enchanter enchanter;
 
     public void Init(PlayableFish _fish)
     {
         fish = _fish;
-        timer = new CoolTime(_fish.fishData.coolTime, _fish.Base);
+        timer = new CoolTime(_fish.fishData.coolTime+ (enchanter.GetEnchant((int)Enchanter.EnchantType.cool,_fish.fishType) * _fish.fishData.coolUpgradeRatio), _fish.Base);
         skillOffImage.sprite = _fish.fishData.skillOffSprite;
         skillOnImage.sprite = _fish.fishData.skillOnSprite;
         gameObject.SetActive(true);
@@ -32,7 +33,7 @@ public class UI_Skill : MonoBehaviour
         skillOnImage.fillAmount = timer.GetRatio();
         if(timer.GetRatio() <= 0)
         {
-            timer = new CoolTime(fish.fishData.coolTime,fish.Base);
+            timer = new CoolTime(fish.fishData.coolTime+ (enchanter.GetEnchant((int)Enchanter.EnchantType.cool, fish.fishType) * fish.fishData.coolUpgradeRatio), fish.Base);
         }
         int iText = timer.GetRemainTime();
 
@@ -43,7 +44,7 @@ public class UI_Skill : MonoBehaviour
     {
         if (timer.GetRatio() < 1)
             return;
-        timer = new DurationTime(fish.fishData.durationTime, fish.Effect);
+        timer = new DurationTime(fish.fishData.durationTime+(enchanter.GetEnchant((int)Enchanter.EnchantType.duration, fish.fishType) * fish.fishData.duraUpgradeRatio), fish.Effect);
     }
 
 }

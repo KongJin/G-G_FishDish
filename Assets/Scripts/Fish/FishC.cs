@@ -15,6 +15,12 @@ public class FishC : PlayableFish
 
     public override int fishType => (int)Define.FishType.CORI;
 
+    public override string GetDescription(float coolLevel, float duraLevel)
+    {
+        return $"{fishData.durationTime + duraLevel * fishData.duraUpgradeRatio}초간 가까이 있던 물고기들을 발견합니다. ( 쿨타임 {fishData.coolTime - coolLevel * fishData.coolUpgradeRatio}초 )";
+
+    }
+
     protected override void BaseEffect()
     {
 

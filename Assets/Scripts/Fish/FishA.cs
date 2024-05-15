@@ -25,4 +25,10 @@ public class FishA : PlayableFish
     {
         eater = eTemp;
     }
+
+    public override string GetDescription(float coolLevel, float duraLevel)
+    {
+        return $"{fishData.durationTime + duraLevel * fishData.duraUpgradeRatio}초간 무적이 됩니다 ( 쿨타임 {fishData.coolTime - coolLevel * fishData.coolUpgradeRatio}초 )";
+    }
+
 }
