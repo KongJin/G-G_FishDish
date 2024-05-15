@@ -11,10 +11,8 @@ public class Player : MonoBehaviour
     UI_Skill skillUI;
     [SerializeField]
     UI_Joystick joystickUI;
-    [SerializeField]
-    AudioClip clip;
-
     PlayableFish fish;
+    
     public void GameStart(PlayableFish _fish = null)
     {
         fish = factory.Birth(_fish?_fish:fish,joystickUI );
@@ -23,6 +21,7 @@ public class Player : MonoBehaviour
     }
     private void OnEnable()
     {
-        GameManager.Sound.PlayBGM(clip);
+        GameManager.Sound.NowTapIndex = 1;
+        GameManager.Sound.PlayBGM(GameManager.Resources.GetClip(ResourcesManager.SoundType.BGM, GameManager.Sound.NowTapIndex));
     }
 }

@@ -6,6 +6,17 @@ using UnityEngine;
 public class DataManager 
 {
     int[] highScores;
+    bool nowJoystick;
+    public bool NowJoystick
+    {
+        get => nowJoystick;
+        set
+        {
+            nowJoystick = value;
+            int pos = value == true ? 1 : 0;
+            PlayerPrefs.SetInt("JoyStickPos", pos);
+        }
+    }
     
     public int GetHighScore(int type)
     {
@@ -25,6 +36,9 @@ public class DataManager
             highScores[i] = int.Parse(temp);
         }
         int.TryParse("Money", out money);
+
+        int joystickPos = PlayerPrefs.GetInt("JoyStickPos");
+        nowJoystick = joystickPos == 1;
     }
     
     public void SetHighScore(int score, int type )

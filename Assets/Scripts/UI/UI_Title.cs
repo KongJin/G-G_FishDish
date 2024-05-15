@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class TitleCanvas : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField]
-    private AudioClip clip;
     private void OnEnable()
     {
-        GameManager.Sound.PlayBGM(clip);
+        GameManager.Sound.NowTapIndex = 0;
+        GameManager.Sound.PlayBGM(GameManager.Resources.GetClip(ResourcesManager.SoundType.BGM, GameManager.Sound.NowTapIndex));
     }
 
 }
