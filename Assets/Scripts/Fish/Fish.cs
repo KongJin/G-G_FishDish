@@ -53,7 +53,7 @@ public class Fish : MonoBehaviour  ,IMoveAble
     protected IMoveAble mover;
     void Update()
     {
-        mover.Move(direction,spec.speed);
+        Move(direction,spec.speed);
         if(rectTransform.localPosition.x <-Define.screenWide- Define.space || rectTransform.localPosition.x> Define.screenWide+ Define.space)
             pool.Release(this);
         
@@ -73,6 +73,7 @@ public class Fish : MonoBehaviour  ,IMoveAble
 
     public void Move(Vector3[] direction, float speed)
     {
+        
         mover?.Move(direction,speed );
     }
 }

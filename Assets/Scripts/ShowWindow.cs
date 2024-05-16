@@ -20,8 +20,6 @@ public class ShowWindow : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI fishSkillName;
 
-    [SerializeField]
-    TextMeshProUGUI fishSkillDescription;
     int distInterval = 600;
     float remainMove = 0;
 
@@ -66,9 +64,8 @@ public class ShowWindow : MonoBehaviour
         fishName.text = fishes[curIndex].fishData.fishName;
         description.text = fishes[curIndex].fishData.fishDescription;
         fishSkillName.text = fishes[curIndex].fishData.fishSkillName;
-        fishSkillDescription.text = fishes[curIndex].GetDescription(enchanter.GetEnchant(0,curIndex), enchanter.GetEnchant(1, curIndex));
         
-        enchanter.SetFish(curIndex, fishes[curIndex].fishData);
+        enchanter.SetFish( fishes[curIndex]);
 
     }
 

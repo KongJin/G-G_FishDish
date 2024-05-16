@@ -31,7 +31,8 @@ public class Player : MonoBehaviour
         RectTransform skillPos = skillUI.gameObject.GetComponent<RectTransform>();
         RectTransform joystickPos = joystickUI.gameObject.GetComponent<RectTransform>();
 
-        if(GameManager.Data.NowJoystick == true) // true = 조이스틱 오른쪽, false = 왼쪽이 되어야합니다.
+        Vector3 changePos = joystickPos.anchoredPosition;
+        if (GameManager.Data.NowJoystick == true) // true = 조이스틱 오른쪽, false = 왼쪽이 되어야합니다.
         {
             skillPos.anchorMin = Vector2.zero;
             skillPos.anchorMax = Vector2.zero;
@@ -39,13 +40,10 @@ public class Player : MonoBehaviour
             joystickPos.anchorMin = Vector2.right;
             joystickPos.anchorMax = Vector2.right;
 
-            Vector3 changePos = joystickPos.localPosition;
-            changePos.x += 250.0f;
-            joystickPos.localPosition = changePos;
-
-            changePos = skillPos.localPosition;
-            changePos.x -= 250.0f;
-            skillPos.localPosition = changePos;
+            changePos.x =-125f;
+            joystickPos.anchoredPosition = changePos;
+            changePos.x = 125f;
+            skillPos.anchoredPosition = changePos;
         }
         else
         {
@@ -55,13 +53,10 @@ public class Player : MonoBehaviour
             joystickPos.anchorMin = Vector2.zero;
             joystickPos.anchorMax = Vector2.zero;
 
-            Vector3 changePos = joystickPos.localPosition;
-            changePos.x -= 250.0f;
-            joystickPos.localPosition = changePos;
-
-            changePos = skillPos.localPosition;
-            changePos.x += 250.0f;
-            skillPos.localPosition = changePos;
+            changePos.x = 125.0f;
+            joystickPos.anchoredPosition = changePos;
+            changePos.x = -125.0f;
+            skillPos.anchoredPosition = changePos;
         }
         joystickUI.SetJoyStickPos();
     }

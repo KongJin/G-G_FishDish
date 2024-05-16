@@ -23,8 +23,9 @@ public class FishE : PlayableFish
     protected override void SkillEffect()
     {
         Physics2D.OverlapCircleNonAlloc(rectTransform.position, spec.size, collisionTargets);
-        foreach (Collider2D collider in collisionTargets)
+        for ( int i =0; i<10; i++)
         {
+            Collider2D collider = collisionTargets[i];
             if (collider == null )
                 continue;
 
@@ -34,13 +35,14 @@ public class FishE : PlayableFish
 
             target.Move(target.direction[0].x < 0 ?  right: left, target.spec.speed);
             target = null;
-
+            collisionTargets[i] = null;
         }
 
+        
     }
 
     public override string GetDescription(float coolLevel, float duraLevel)
     {
-        return $"위압감을 뿜어 {fishData.durationTime + duraLevel * fishData.duraUpgradeRatio}초간 주변 물고기를 도망치게하거나 멈춥니다. ( 쿨타임 {fishData.coolTime - coolLevel * fishData.coolUpgradeRatio}초 )";
+        return $"위압감을 뿜어 {fishData.durationTime + duraLevel * fishData.duraUpgradeRatio}초간 주변 물고기를 멈춥니다. ( 쿨타임 {fishData.coolTime - coolLevel * fishData.coolUpgradeRatio}초 )";
     }
 }

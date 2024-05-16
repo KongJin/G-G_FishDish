@@ -20,7 +20,7 @@ public class UI_Skill : MonoBehaviour
     public void Init(PlayableFish _fish)
     {
         fish = _fish;
-        timer = new CoolTime(_fish.fishData.coolTime+ (enchanter.GetEnchant((int)Enchanter.EnchantType.cool,_fish.fishType) * _fish.fishData.coolUpgradeRatio), _fish.Base);
+        timer = new CoolTime(_fish.fishData.coolTime- (enchanter.GetEnchant((int)Enchanter.EnchantType.cool,_fish.fishType) * _fish.fishData.coolUpgradeRatio), _fish.Base);
         skillOffImage.sprite = _fish.fishData.skillOffSprite;
         skillOnImage.sprite = _fish.fishData.skillOnSprite;
         gameObject.SetActive(true);
@@ -33,7 +33,7 @@ public class UI_Skill : MonoBehaviour
         skillOnImage.fillAmount = timer.GetRatio();
         if(timer.GetRatio() <= 0)
         {
-            timer = new CoolTime(fish.fishData.coolTime+ (enchanter.GetEnchant((int)Enchanter.EnchantType.cool, fish.fishType) * fish.fishData.coolUpgradeRatio), fish.Base);
+            timer = new CoolTime(fish.fishData.coolTime- (enchanter.GetEnchant((int)Enchanter.EnchantType.cool, fish.fishType) * fish.fishData.coolUpgradeRatio), fish.Base);
         }
         int iText = timer.GetRemainTime();
 

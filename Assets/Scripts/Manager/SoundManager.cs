@@ -73,12 +73,13 @@ public class SoundManager:MonoBehaviour
             return;
         }
 
-        StartCoroutine(Fade(BGMSource[change], 2, 0));
+        StartCoroutine(Fade(BGMSource[change], 1f, 0));
+
         change = (change + 1) % 2;
 
         BGMSource[change].clip = clip;
         BGMSource[change].Play();
-        StartCoroutine(Fade(BGMSource[change], 3, 0.5f));
+        StartCoroutine(Fade(BGMSource[change], 1.5f, 0.5f));
     }
 
     IEnumerator Fade(AudioSource audioSource, float duration, float targetVolume)
@@ -88,6 +89,7 @@ public class SoundManager:MonoBehaviour
 
         while (currentTime < duration)
         {
+            
             currentTime += Time.deltaTime;
             audioSource.volume = Mathf.Lerp(startVolume, targetVolume, currentTime / duration);
             yield return null;

@@ -22,8 +22,8 @@ class Enchanter:MonoBehaviour
     }
     private void Enchant()
     {
-        enchantLevels[enchantType][fishType]++;
-        PlayerPrefs.SetInt($"Enchant_{enchantType}_{fishType}", enchantLevels[enchantType][fishType]);
+        enchantLevels[enchantType][fish.fishType]++;
+        PlayerPrefs.SetInt($"Enchant_{enchantType}_{fish.fishType}", enchantLevels[enchantType][fish.fishType]);
     }
 
     private void Awake()
@@ -46,49 +46,46 @@ class Enchanter:MonoBehaviour
 
     [SerializeField]
     TMPro.TextMeshProUGUI[] levelTexts;
-    FishData data;
-    int fishType;
+    
     [SerializeField]
     UnityEngine.UI.Image cool;
 
     [SerializeField]
     UnityEngine.UI.Image dura;
 
-
-    public void SetFish(int _fishType,FishData _data)
+    [SerializeField]
+    TextMeshProUGUI fishSkillDescription;
+    PlayableFish fish;
+    public void SetFish(PlayableFish _fish)
     {
-        if(_fishType<0 || _fishType>= (int) Define.FishType.MAX)
-        {
-            Debug.Log($"Enchanter SetFish type range over , type = {_fishType}");
-            return;
-        }
-        fishType = _fishType;
-        data = _data;
+        fish = _fish;
         for(int i = 0; i < (int)EnchantType.MAX;i++ )
         {
-            int level = enchantLevels[i][_fishType];
+            int level = enchantLevels[i][fish.fishType];
 
             string temp= "Level ";
-            temp += level == Define.maxUpgrade ? "MAX" : level + 1;
+            temp += level == maxUpgrade ? "MAX" : level + 1;
 
             levelTexts[i].text = temp;
         }
         Money.text = GameManager.Data.Money.ToString();
-        cool.sprite = data.skillOffSprite;
-        dura.sprite = data.skillOnSprite;
-        
+        cool.sprite = fish.fishData.skillOffSprite;
+        dura.sprite = fish.fishData.skillOnSprite;
+
+        fishSkillDescription.text = _fish.GetDescription(GetEnchant(0, fish.fishType), GetEnchant(1, fish.fishType));
+
     }
     int[] upgradeCost;
     public int GetCost()
     {
-        return upgradeCost[enchantLevels[enchantType][fishType]];
+        return upgradeCost[enchantLevels[enchantType][fish.fishType]];
     }
     [SerializeField]
     UpgradePopup popup;
     public void OpenPopup(int _enchantType)//EnchantType
     {
         enchantType = _enchantType;
-        popup.SetPopup(_enchantType, data, GetEnchant(_enchantType, fishType),GetCost());
+        popup.SetPopup(_enchantType, fish.fishData, GetEnchant(_enchantType, fish.fishType),GetCost());
         
     }
 
@@ -97,7 +94,7 @@ class Enchanter:MonoBehaviour
     {
         if (GetCost() > GameManager.Data.Money)
             return;
-        if (enchantLevels[enchantType][fishType] >= Define.maxUpgrade)
+        if (enchantLevels[enchantType][fish.fishType] >= maxUpgrade)
             return;
 
         GameManager.Data.ChangeMoney(-GetCost());
@@ -105,7 +102,7 @@ class Enchanter:MonoBehaviour
         Enchant();
         Money.text = GameManager.Data.Money.ToString();
         OpenPopup(enchantType);
-        SetFish(fishType, data);
+        SetFish(fish);
     }
 
 
