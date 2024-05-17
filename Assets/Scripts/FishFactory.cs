@@ -24,7 +24,7 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     [SerializeField]
     TMPro.TextMeshProUGUI pointUI;
     [SerializeField]
-    TMPro.TextMeshProUGUI highScoreText;
+    TMPro.TextMeshProUGUI goldText;
 
     [SerializeField]
     Sprite[] fishImgs;
@@ -34,36 +34,9 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     LinkedList<Fish> liveFishs = new();
 
 
-    int[] highScores;
-
-    public int GetHighScore(int type)
-    {
-        return highScores[type];
-    }
     int money;
     public int Money { get { return money; } }
 
-
-    public void SetHighScore(int score, int type)
-    {
-        if (highScores[type] < score)
-        {
-            highScores[type] = score;
-            PlayerPrefs.SetInt($"HighScore_{type}", highScores[type]);
-        }
-        ChangeMoney(score);
-    }
-
-    public bool ChangeMoney(int variance)
-    {
-        if (money + variance < 0)
-        {
-            return false;
-        }
-        money += variance;
-        PlayerPrefs.SetString("Money", money.ToString());
-        return true;
-    }
 
     public PlayableFish Birth(PlayableFish _fish, UI_Joystick joystick)
     {
@@ -128,7 +101,7 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
 
     void Start()
     {
-        highScoreText.text = GameManager.Data.GetHighScore(obj.fishType).ToString();
+        goldText.text = GameManager.Data.Money.ToString();
     }
 
     // Update is called once per frame
@@ -153,8 +126,8 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
         GameManager.Data.ChangeMoney(addPoint);
         pointUI.text = curPoint.ToString();
         GameManager.Data.SetHighScore(curPoint, obj.fishType);
-        highScoreText.text = GameManager.Data.GetHighScore(obj.fishType).ToString();
-        
+        goldText.text = GameManager.Data.Money.ToString();
+
     }
 
 
