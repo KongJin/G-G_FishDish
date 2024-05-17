@@ -47,11 +47,6 @@ class Enchanter:MonoBehaviour
     [SerializeField]
     TMPro.TextMeshProUGUI[] levelTexts;
     
-    [SerializeField]
-    UnityEngine.UI.Image cool;
-
-    [SerializeField]
-    UnityEngine.UI.Image dura;
 
     [SerializeField]
     TextMeshProUGUI fishSkillDescription;
@@ -69,8 +64,6 @@ class Enchanter:MonoBehaviour
             levelTexts[i].text = temp;
         }
         Money.text = GameManager.Data.Money.ToString();
-        cool.sprite = fish.fishData.skillOffSprite;
-        dura.sprite = fish.fishData.skillOnSprite;
 
         fishSkillDescription.text = _fish.GetDescription(GetEnchant(0, fish.fishType), GetEnchant(1, fish.fishType));
 
@@ -103,6 +96,7 @@ class Enchanter:MonoBehaviour
         Money.text = GameManager.Data.Money.ToString();
         OpenPopup(enchantType);
         SetFish(fish);
+        GameManager.Sound.PlayEffect(GameManager.Resources.GetClip(ResourcesManager.SoundType.Effect, (int)ResourcesManager.EffectClip.buy));
     }
 
 

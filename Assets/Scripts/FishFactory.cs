@@ -162,6 +162,6 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     UI_GameOver GameOverUI;
     public void GameOver()
     {
-        GameOverUI.ShowGameOver(curPoint, GameManager.Data.GetHighScore(obj.fishType));
+        GameOverUI.ShowGameOver(curPoint, GameManager.Data.GetHighScore(obj.fishType), obj.fishData.dieSprite);
     }
 }

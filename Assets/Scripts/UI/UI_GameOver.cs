@@ -9,10 +9,16 @@ public class UI_GameOver : UI_Puase
     [SerializeField]
     TMPro.TextMeshProUGUI high;
 
-    public void ShowGameOver(int _cur, int _high)
+    [SerializeField]
+    UnityEngine.UI.Image dieImage;
+
+    public void ShowGameOver(int _cur, int _high, Sprite sprite)
     {
         cur.text = _cur.ToString();
         high.text = _high.ToString();
+        dieImage.sprite = sprite;
+        dieImage.SetNativeSize();
+
         gameObject.SetActive(true);
     }
     
