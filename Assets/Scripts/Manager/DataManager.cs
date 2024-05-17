@@ -30,6 +30,7 @@ public class DataManager
         highScores = new int[(int)Define.FishType.MAX];
         for (int i =0; i<(int)Define.FishType.MAX; i++)
         {
+            // PlayerPrefs.DeleteKey($"HighScore_{i}");
             highScores[i] = PlayerPrefs.GetInt($"HighScore_{i}");
         }
 

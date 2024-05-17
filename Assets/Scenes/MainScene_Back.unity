@@ -6420,7 +6420,6 @@ MonoBehaviour:
   fishName: {fileID: 354081374}
   description: {fileID: 168067553}
   fishSkillName: {fileID: 1684026611}
-  fishSkillDescription: {fileID: 1894583134}
   fishes:
   - {fileID: 660109758214933965, guid: 98efa2f3e3ee68c48898501b9850e9eb, type: 3}
   - {fileID: 1340687366456848324, guid: 3cac0ebd04e69654e944f0e3b2258d47, type: 3}
@@ -8558,6 +8557,7 @@ MonoBehaviour:
   - {fileID: 999283203}
   cool: {fileID: 1862063079}
   dura: {fileID: 676938498}
+  fishSkillDescription: {fileID: 0}
   popup: {fileID: 1178179792}
 --- !u!1 &1239259280
 GameObject:

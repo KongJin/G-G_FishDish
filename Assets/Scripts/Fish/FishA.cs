@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FishA : PlayableFish
 {
 
     IEatAble eTemp;
     IEatAble skillEfect2;
+    [SerializeField] GameObject baseEffect;
+    [SerializeField] GameObject subEffect;
 
     public override int fishType => (int)Define.FishType.GOLD;
 
@@ -19,6 +22,39 @@ public class FishA : PlayableFish
     protected override void SkillEffect()
     {
         eater = skillEfect2;
+        if(baseEffect == null)
+        {
+            GameObject skillB = Resources.Load<GameObject>("Prefabs/FishA_BaseEffect");
+            baseEffect = Instantiate(skillB, transform);
+        }
+        StartCoroutine(AnimateSprites(0, 5));
+        if(subEffect == null)
+        {
+            GameObject skillS = Resources.Load<GameObject>("Prefabs/FishA_SubEffect");
+            subEffect = Instantiate(skillS, transform);
+        }
+    }
+
+    IEnumerator AnimateSprites(int start, int end)
+    {
+        int spriteCount = end - start + 1;
+        float totalDuration = fishData.durationTime + fishData.duraUpgradeRatio;
+        float timePerFrame = totalDuration / spriteCount;
+        Image myImage = baseEffect.GetComponent<Image>();
+
+        float elapsedTime = 0f;
+
+        baseEffect.SetActive(true);
+        while (elapsedTime < totalDuration)
+        {
+            for (int i = start; i <= end; i++)
+            {
+                myImage.sprite = fishData.skillEffect[i];
+                elapsedTime += Time.deltaTime;
+                yield return new WaitForSeconds(timePerFrame);
+            }
+        }
+        baseEffect.SetActive(false);
     }
 
     protected override void BaseEffect()

@@ -24,3 +24,16 @@ MonoBehaviour:
   <skillOffSprite>k__BackingField: {fileID: 21300000, guid: 9270de5c5dd451546844b978a6c86635, type: 3}
   <liftingScore>k__BackingField: 0
   <dieSprite>k__BackingField: {fileID: 21300000, guid: 4e7673515a6da824399bfe618de0f7e0, type: 3}
+  <skillEffect>k__BackingField:
+  - {fileID: -1499473771, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
+  - {fileID: -703320188, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
+  - {fileID: -973798613, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
+  - {fileID: 315533963, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
+  - {fileID: -601832172, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
+  - {fileID: -645167688, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
+  - {fileID: -54176422, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
+  - {fileID: -1915747516, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
+  - {fileID: -862079249, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
+  - {fileID: 2126323723, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
+  - {fileID: -1093242150, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
+  - {fileID: -2039785423, guid: 12a9d5d0fb8cfce45833c004b76e1801, type: 3}
