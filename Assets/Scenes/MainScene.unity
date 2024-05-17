@@ -322,7 +322,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3656,7 +3656,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -6543,6 +6543,7 @@ MonoBehaviour:
   - {fileID: -2924782405404207568, guid: c1d1180d68713d54082220d5eb497352, type: 3}
   highScore: {fileID: 598089634}
   blind: {fileID: 937511607}
+  blindText: {fileID: 167295229}
   enchanter: {fileID: 1229632195}
 --- !u!1 &937511607
 GameObject:
@@ -11082,7 +11083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1799997800
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -32,9 +32,12 @@ public class ShowWindow : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI highScore;
 
+   
+
     [SerializeField]
     GameObject blind;
-
+    [SerializeField]
+    TextMeshProUGUI blindText;
 
     [SerializeField]
     Enchanter enchanter;
@@ -55,6 +58,7 @@ public class ShowWindow : MonoBehaviour
             if(liftingScore > GameManager.Data.GetHighScore(i))
             {
                 blind.SetActive(true);
+                blindText.text = $"앞에 있는 모든 물고기들의\n최고점수 {fishes[curIndex].fishData.liftingScore}점 이상";
                 return;
             }
         }
