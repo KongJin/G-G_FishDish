@@ -10,6 +10,7 @@ public abstract class PlayableFish : Fish
     public FishData fishData { get; private set; }
     public abstract int fishType { get; }
 
+
     public void Init(Vector3 position,  Spec _spec , IPointAdder _adder , UI_Joystick joystick , IFishPool _pool)
     {
         spec = _spec;
@@ -45,10 +46,13 @@ public abstract class PlayableFish : Fish
         eater = EaterMaker.GetEater(Define.FishType.MAX, this);
     }
 
+
     // Update is called once per frame
     void Update()
     {
         mover.Move(direction,spec.speed);
+
+        
     }
     public Action Effect { get; protected set; }
     public Action Base { get; protected set; }

@@ -7,30 +7,27 @@ public class FishA : PlayableFish
 {
 
     IEatAble eTemp;
-    IEatAble skillEfect2;
-    [SerializeField] GameObject baseEffect;
-    [SerializeField] GameObject subEffect;
+    IEatAble skillEfect;
+    
 
     public override int fishType => (int)Define.FishType.GOLD;
+
 
     protected override void Start()
     {
         base.Start();
         eTemp = eater;
-        skillEfect2 = EaterMaker.GetEater(Define.FishType.GOLD, this); 
+        skillEfect = EaterMaker.GetEater(Define.FishType.GOLD, this);
     }
     protected override void SkillEffect()
     {
-        eater = skillEfect2;
-        baseEffect.SetActive(true);
-        subEffect.SetActive(true);
+        eater = skillEfect;
+        
     }
 
     protected override void BaseEffect()
     {
         eater = eTemp;
-        baseEffect.SetActive(false);
-        subEffect.SetActive(false);
     }
 
     public override string GetDescription(float coolLevel, float duraLevel)

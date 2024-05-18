@@ -23,7 +23,6 @@ public class ShowWindow : MonoBehaviour
     int distInterval = 600;
     float remainMove = 0;
 
-    float duration = 1f;
     float startTime;
     [SerializeField]
     PlayableFish[] fishes;
@@ -32,7 +31,8 @@ public class ShowWindow : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI highScore;
 
-   
+    [SerializeField]
+    GameObject yellowLine;
 
     [SerializeField]
     GameObject blind;
@@ -44,11 +44,24 @@ public class ShowWindow : MonoBehaviour
     public void PassOver(int direction)//-1,1
     {
         int index = direction * -1;
-        if(curIndex + index< 0 || curIndex + index >= fishWindow.childCount)
+       
+        curIndex += index;
+
+        if (curIndex < 0)
         {
-            return;
+            curIndex += fishWindow.childCount ;
+
+            direction *= (fishWindow.childCount-1) * -1;
+
         }
-        curIndex += + index;
+        else if ( curIndex >= fishWindow.childCount)
+        {
+
+            direction *= (fishWindow.childCount - 1) * -1;
+            curIndex -= fishWindow.childCount;
+
+        }
+
         remainMove +=  distInterval * direction;
 
         startTime = Time.time;
@@ -58,12 +71,13 @@ public class ShowWindow : MonoBehaviour
             if(liftingScore > GameManager.Data.GetHighScore(i))
             {
                 blind.SetActive(true);
+                highScore.gameObject.SetActive(false);
                 blindText.text = $"앞에 있는 모든 물고기들의\n최고점수 {fishes[curIndex].fishData.liftingScore}점 이상";
                 return;
             }
         }
         blind.SetActive(false);
-
+        highScore.gameObject.SetActive(true);
         highScore.text = GameManager.Data.GetHighScore(curIndex).ToString();
         fishName.text = fishes[curIndex].fishData.fishName;
         description.text = fishes[curIndex].fishData.fishDescription;
@@ -78,10 +92,16 @@ public class ShowWindow : MonoBehaviour
         PassOver(0);
     }
 
+    float duration = 1;
     void Update()
     {
         float t = (Time.time - startTime) / duration;
-        fishWindow.localPosition = Vector3.Lerp(fishWindow.localPosition, Vector3.right * remainMove, t);
+        if(t< duration)
+        {
+            fishWindow.localPosition = Vector2.Lerp(fishWindow.localPosition, Vector2.right * remainMove, t);
+            
+        }
+        yellowLine.SetActive(t> duration);
     }
 
 

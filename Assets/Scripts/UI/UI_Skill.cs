@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Mesh;
+using UnityEngine.UI;
 
 public class UI_Skill : MonoBehaviour
 {
@@ -9,13 +9,17 @@ public class UI_Skill : MonoBehaviour
     PlayableFish fish;
 
     [SerializeField]
-    UnityEngine.UI.Image skillOffImage;
+    Image skillOffImage;
     [SerializeField]
-    UnityEngine.UI.Image skillOnImage;
+    Image skillOnImage;
     [SerializeField]
     TMPro.TextMeshProUGUI textMeshProUGUI;
     [SerializeField]
     Enchanter enchanter;
+
+    Image skillSpriteImage;
+    Image skillAnimImage;
+
 
     public void Init(PlayableFish _fish)
     {
@@ -24,12 +28,45 @@ public class UI_Skill : MonoBehaviour
         skillOffImage.sprite = _fish.fishData.skillOffSprite;
         skillOnImage.sprite = _fish.fishData.skillOnSprite;
         gameObject.SetActive(true);
+
+
+        skillSpriteImage = skillSpriteImage ?? Instantiate(new GameObject(), fish.transform).gameObject.AddComponent<Image>();
+        skillAnimImage = skillAnimImage ?? Instantiate(new GameObject(), fish.transform).gameObject.AddComponent<Image>();
+
+        skillSpriteImage.sprite = fish.fishData.skillEffectSprite;
+        skillAnimImage.sprite = fish.fishData.skillEffectAnim[0]?? fish.fishData.skillEffectSprite;
+        skillAnimImage.SetNativeSize();
+        skillSpriteImage.SetNativeSize();
+        skillSpriteImage.gameObject.SetActive(false);
+        skillAnimImage.gameObject.SetActive(false);
     }
 
+    float interval = 0.05f;
+    float curInterval = 0;
+    int curAnimIndex;
 
     void Update()
     {
-        timer.Running(Time.deltaTime);
+        if(timer.Running(Time.deltaTime))
+        {
+
+            skillSpriteImage.gameObject.SetActive(true);
+            skillAnimImage.gameObject.SetActive(true);
+            curInterval += Time.deltaTime;
+            if (interval< curInterval)
+            {
+                curInterval = 0;
+                skillAnimImage.sprite = fish.fishData.skillEffectAnim[curAnimIndex++% fish.fishData.skillEffectAnim.Length];
+
+            }
+
+        }
+        else
+        {
+            skillSpriteImage.gameObject.SetActive(false);
+            skillAnimImage.gameObject.SetActive(false);
+        }
+        
         skillOnImage.fillAmount = timer.GetRatio();
         if(timer.GetRatio() <= 0)
         {

@@ -6542,6 +6542,7 @@ MonoBehaviour:
   - {fileID: -6101797817944231039, guid: b7748cdacbec37f41829c6a10943ae02, type: 3}
   - {fileID: -2924782405404207568, guid: c1d1180d68713d54082220d5eb497352, type: 3}
   highScore: {fileID: 598089634}
+  yellowLine: {fileID: 157487201}
   blind: {fileID: 937511607}
   blindText: {fileID: 167295229}
   enchanter: {fileID: 1229632195}
@@ -11083,7 +11084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1799997800
 MonoBehaviour:
   m_ObjectHideFlags: 0

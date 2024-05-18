@@ -13,9 +13,11 @@ public class Player : MonoBehaviour
     UI_Joystick joystickUI;
     PlayableFish fish;
 
+
     public void GameStart(PlayableFish _fish = null)
     {
-        fish = factory.Birth(_fish?_fish:fish,joystickUI );
+        fish = factory.Birth(_fish??fish,joystickUI );
+
         skillUI.Init(fish);
         
     }
