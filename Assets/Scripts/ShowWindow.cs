@@ -104,11 +104,9 @@ public class ShowWindow : MonoBehaviour
         yellowLine.SetActive(t> duration);
     }
 
-
-    public void GameStart(Player player)
+    public PlayableFish GetSelectedFish()
     {
-        player.GameStart(fishes[curIndex]);
+
+        return fishes[curIndex];
     }
-
-
 }

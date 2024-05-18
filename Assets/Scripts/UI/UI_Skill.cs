@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,9 +30,16 @@ public class UI_Skill : MonoBehaviour
         skillOnImage.sprite = _fish.fishData.skillOnSprite;
         gameObject.SetActive(true);
 
+        if (skillSpriteImage!=null)
+        {
+            Destroy(skillSpriteImage.gameObject );
+            Destroy(skillAnimImage.gameObject);
+            skillSpriteImage = null;
+            skillAnimImage = null;
+        }
 
-        skillSpriteImage = skillSpriteImage ?? Instantiate(new GameObject(), fish.transform).gameObject.AddComponent<Image>();
-        skillAnimImage = skillAnimImage ?? Instantiate(new GameObject(), fish.transform).gameObject.AddComponent<Image>();
+        skillSpriteImage =  Instantiate(new GameObject(), fish.transform).gameObject.AddComponent<Image>();
+        skillAnimImage =  Instantiate(new GameObject(), fish.transform).gameObject.AddComponent<Image>();
 
         skillSpriteImage.sprite = fish.fishData.skillEffectSprite;
         skillAnimImage.sprite = fish.fishData.skillEffectAnim[0]?? fish.fishData.skillEffectSprite;

@@ -24,3 +24,8 @@ MonoBehaviour:
   <skillOffSprite>k__BackingField: {fileID: 21300000, guid: fd7b64458d9efef4ea29e670201d904e, type: 3}
   <liftingScore>k__BackingField: 15
   <dieSprite>k__BackingField: {fileID: 21300000, guid: 5b2adb4731af5ad40bdafe24bbe002b4, type: 3}
+  <skillEffectSprite>k__BackingField: {fileID: 228971473, guid: 32a9e3e354befa847ad1a392f1406529, type: 3}
+  <skillEffectAnim>k__BackingField:
+  - {fileID: 228971473, guid: 32a9e3e354befa847ad1a392f1406529, type: 3}
+  - {fileID: -1668253280, guid: 32a9e3e354befa847ad1a392f1406529, type: 3}
+  - {fileID: 973788945, guid: 32a9e3e354befa847ad1a392f1406529, type: 3}

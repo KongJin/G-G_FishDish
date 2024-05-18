@@ -11,12 +11,14 @@ public class Player : MonoBehaviour
     UI_Skill skillUI;
     [SerializeField]
     UI_Joystick joystickUI;
-    PlayableFish fish;
+    [SerializeField]
+    ShowWindow showWindow;
+    
 
-
-    public void GameStart(PlayableFish _fish = null)
+    public void GameStart( )
     {
-        fish = factory.Birth(_fish??fish,joystickUI );
+
+        PlayableFish fish = factory.Birth(showWindow.GetSelectedFish(),joystickUI );
 
         skillUI.Init(fish);
         
