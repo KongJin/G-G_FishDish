@@ -25,4 +25,5 @@ MonoBehaviour:
   <liftingScore>k__BackingField: 20
   <dieSprite>k__BackingField: {fileID: 21300000, guid: d7c6774d9f839654eaaa395064c81a29, type: 3}
   <skillEffectSprite>k__BackingField: {fileID: 21300000, guid: 72fd1ff34ce707b439c6b034eec1665f, type: 3}
-  <skillEffectAnim>k__BackingField: []
+  <skillEffectAnim>k__BackingField:
+  - {fileID: 21300000, guid: 72fd1ff34ce707b439c6b034eec1665f, type: 3}

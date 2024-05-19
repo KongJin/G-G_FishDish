@@ -116,7 +116,7 @@ class DoubleEat : PlayerFishEat
 
 class BigEat : PlayerFishEat
 {
-    public BigEat(Spec _spec, IPointAdder _adder) : base(_spec, _adder,1.5f)
+    public BigEat(Spec _spec, IPointAdder _adder) : base(_spec, _adder,1.3f)
     {
     }
 }

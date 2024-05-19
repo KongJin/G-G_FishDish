@@ -32,6 +32,6 @@ public class FishD : PlayableFish
 
     public override string GetDescription(float coolLevel, float duraLevel)
     {
-        return $"꼬리를 휘둘러 {fishData.durationTime + duraLevel * fishData.duraUpgradeRatio}초간 50% 더큰 물고기를 섭취할수있게 됩니다. ( 쿨타임 {fishData.coolTime - coolLevel * fishData.coolUpgradeRatio}초 )";
+        return $"꼬리를 휘둘러 {fishData.durationTime + duraLevel * fishData.duraUpgradeRatio}초간 30% 더큰 물고기를 섭취할수있게 됩니다. ( 쿨타임 {fishData.coolTime - coolLevel * fishData.coolUpgradeRatio}초 )";
     }
 }

@@ -45,6 +45,10 @@ public class UI_Skill : MonoBehaviour
         skillAnimImage.sprite = fish.fishData.skillEffectAnim[0]?? fish.fishData.skillEffectSprite;
         skillAnimImage.SetNativeSize();
         skillSpriteImage.SetNativeSize();
+        Color tempC = skillAnimImage.color;
+        tempC.a = 0.7f;
+        skillAnimImage.color = tempC;
+        skillSpriteImage.color = tempC;
         skillSpriteImage.gameObject.SetActive(false);
         skillAnimImage.gameObject.SetActive(false);
     }
