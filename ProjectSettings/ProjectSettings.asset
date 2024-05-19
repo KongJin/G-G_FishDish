@@ -40,7 +40,7 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: 001fe5900f5964047861cfff2552aa99, type: 3}
+  - logo: {fileID: 21300000, guid: 3be781207ab302748a9b779515440c70, type: 3}
     duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
@@ -265,7 +265,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/SOL/Desktop/G_G.keystore
+  AndroidKeystoreName: '{dedicated}: Desktop/G_G.keystore'
   AndroidKeyaliasName: fishdishkey
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidBuildApkPerCpuArchitecture: 0

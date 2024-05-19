@@ -80,6 +80,7 @@ public class UI_Setting : MonoBehaviour
         sfxOff.SetActive(true);
         sfxOn.SetActive(false);
         GameManager.Sound.IsSFXMuted = true;
+        GameManager.Sound.SetSubEffect(false,0);
     }
 
     public void JoyStickLeftButtonClick(Player player)

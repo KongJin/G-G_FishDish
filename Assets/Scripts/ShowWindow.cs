@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class ShowWindow : MonoBehaviour
@@ -29,7 +30,13 @@ public class ShowWindow : MonoBehaviour
     int curIndex;
 
     [SerializeField]
+    GameObject highScoreBox;
+
+    [SerializeField]
     TextMeshProUGUI highScore;
+
+    [SerializeField]
+    Button startButton;
 
     [SerializeField]
     GameObject yellowLine;
@@ -71,13 +78,15 @@ public class ShowWindow : MonoBehaviour
             if(liftingScore > GameManager.Data.GetHighScore(i))
             {
                 blind.SetActive(true);
-                highScore.gameObject.SetActive(false);
+                highScoreBox.SetActive(false);
+                startButton.interactable = false;
                 blindText.text = $"앞에 있는 모든 물고기들의\n최고점수 {fishes[curIndex].fishData.liftingScore}점 이상";
                 return;
             }
         }
         blind.SetActive(false);
-        highScore.gameObject.SetActive(true);
+        highScoreBox.SetActive(true);
+        startButton.interactable = true;
         highScore.text = GameManager.Data.GetHighScore(curIndex).ToString();
         fishName.text = fishes[curIndex].fishData.fishName;
         description.text = fishes[curIndex].fishData.fishDescription;
@@ -101,7 +110,7 @@ public class ShowWindow : MonoBehaviour
             fishWindow.localPosition = Vector2.Lerp(fishWindow.localPosition, Vector2.right * remainMove, t);
             
         }
-        yellowLine.SetActive(t> duration);
+        yellowLine.SetActive(t> 0.4f);
     }
 
     public PlayableFish GetSelectedFish()
