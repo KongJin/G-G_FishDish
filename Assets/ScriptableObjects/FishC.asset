@@ -29,3 +29,4 @@ MonoBehaviour:
   - {fileID: 228971473, guid: 32a9e3e354befa847ad1a392f1406529, type: 3}
   - {fileID: -1668253280, guid: 32a9e3e354befa847ad1a392f1406529, type: 3}
   - {fileID: 973788945, guid: 32a9e3e354befa847ad1a392f1406529, type: 3}
+  <clip>k__BackingField: {fileID: 8300000, guid: cd415ca623786e440bdf33901226a484, type: 3}

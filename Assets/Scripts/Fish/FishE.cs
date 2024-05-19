@@ -22,7 +22,7 @@ public class FishE : PlayableFish
 
     protected override void SkillEffect()
     {
-        Physics2D.OverlapCircleNonAlloc(rectTransform.position, spec.size, collisionTargets);
+        Physics2D.OverlapCircleNonAlloc(rectTransform.position, spec.size*1.5f, collisionTargets);
         for ( int i =0; i<10; i++)
         {
             Collider2D collider = collisionTargets[i];

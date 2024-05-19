@@ -3198,6 +3198,7 @@ MonoBehaviour:
   skillOnImage: {fileID: 351985072}
   textMeshProUGUI: {fileID: 376327196}
   enchanter: {fileID: 1229632195}
+  skillEffecter: {fileID: 6143382769046473595, guid: 546f013218897694ea786606ef02d567, type: 3}
 --- !u!114 &491907088
 MonoBehaviour:
   m_ObjectHideFlags: 0

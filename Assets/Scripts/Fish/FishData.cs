@@ -20,4 +20,5 @@ public class FishData : ScriptableObject
     [field: SerializeField] public Sprite dieSprite { get; private set; }
     [field: SerializeField] public Sprite skillEffectSprite { get; private set; }
     [field: SerializeField] public Sprite[] skillEffectAnim { get; private set; }
+    [field: SerializeField] public AudioClip clip { get; private set; }
 }
