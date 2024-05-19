@@ -12,10 +12,12 @@ public class UI_Puase : MonoBehaviour
 
     private void OnEnable()
     {
+        GameManager.Sound.SetSubEffect(false);
         Time.timeScale = 0;
     }
     private void OnDisable()
     {
+        GameManager.Sound.SetSubEffect(true);
         Time.timeScale = 1;   
     }
 

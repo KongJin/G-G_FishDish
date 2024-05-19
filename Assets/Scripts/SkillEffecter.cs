@@ -9,8 +9,6 @@ public class SkillEffecter : MonoBehaviour
     [SerializeField]
     Slider skillDuration;
     [SerializeField]
-    AudioSource skillSpeaker;
-    [SerializeField]
     Image skillSpriteImage;
     [SerializeField]
     Image skillAnimImage;
@@ -21,19 +19,24 @@ public class SkillEffecter : MonoBehaviour
     float curInterval = 0;
     int curAnimIndex;
     FishData fishData;
-    public void Init(FishData _fishData)
+
+    Transform fishTransform;
+    Transform barTransfrom;
+    public void Init(FishData _fishData, Transform _fishTransform)
     {
+        fishTransform = _fishTransform;
+        barTransfrom= skillDuration.GetComponent<Transform>();
         gameObject.SetActive(false);
+
         fishData = _fishData;
         skillSpriteImage.sprite = fishData.skillEffectSprite;
         skillAnimImage.sprite = fishData.skillEffectAnim[0]?? fishData.skillEffectSprite;
 
         skillAnimImage.SetNativeSize();
         skillSpriteImage.SetNativeSize();
-        skillSpeaker.clip = fishData.clip;
+
     }
 
-       
     public void SetSkill(float ratio)
     {
         curInterval += Time.deltaTime;
@@ -43,5 +46,6 @@ public class SkillEffecter : MonoBehaviour
             skillAnimImage.sprite = fishData.skillEffectAnim[curAnimIndex++ % fishData.skillEffectAnim.Length];
         }
         skillDuration.value = ratio;
+        barTransfrom.localRotation = fishTransform.localRotation;
     }
 }

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class UI_Skill : MonoBehaviour
 {
     SkillTimer timer;
@@ -31,10 +30,14 @@ public class UI_Skill : MonoBehaviour
         skillOffImage.sprite = _fish.fishData.skillOffSprite;
         skillOnImage.sprite = _fish.fishData.skillOnSprite;
         gameObject.SetActive(true);
-
-        if(_fish.gameObject.GetComponent<SkillEffecter>()==null)
+        SkillEffecter temp = _fish.transform.GetComponentInChildren<SkillEffecter>();
+        
+        if (temp == null)
             skillEffecter = Instantiate(skillEffecter, fish.transform);
-        skillEffecter.Init(fish.fishData);
+        else
+            skillEffecter = temp;
+        skillEffecter.enabled = true;
+        skillEffecter.Init(fish.fishData, fish.transform);
     }
 
 
@@ -48,6 +51,8 @@ public class UI_Skill : MonoBehaviour
         {
             timer = new CoolTime(fish.fishData.coolTime- (enchanter.GetEnchant((int)Enchanter.EnchantType.cool, fish.fishType) * fish.fishData.coolUpgradeRatio), fish.Base);
             skillEffecter.gameObject.SetActive(false);
+            GameManager.Sound.SetSubEffect(false,0);
+         
         }
         skillEffecter.SetSkill(timer.GetRatio());
         int iText = timer.GetRemainTime();
@@ -59,8 +64,10 @@ public class UI_Skill : MonoBehaviour
     {
         if (timer.GetRatio() < 1)
             return;
-        timer = new DurationTime(fish.fishData.durationTime+(enchanter.GetEnchant((int)Enchanter.EnchantType.duration, fish.fishType) * fish.fishData.duraUpgradeRatio), fish.Effect);
+        float duration = fish.fishData.durationTime + (enchanter.GetEnchant((int)Enchanter.EnchantType.duration, fish.fishType) * fish.fishData.duraUpgradeRatio);
+        timer = new DurationTime(duration, fish.Effect);
         skillEffecter.gameObject.SetActive(true);
+        GameManager.Sound.SetSubEffect(true, duration, fish.fishData.clip);
     }
 
 }

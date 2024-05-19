@@ -80,6 +80,8 @@ public class SoundManager:MonoBehaviour
         BGMSource[change].clip = clip;
         BGMSource[change].Play();
         StartCoroutine(Fade(BGMSource[change], 1.5f, 0.5f));
+
+        SetSubEffect(false, 0);
     }
 
     IEnumerator Fade(AudioSource audioSource, float duration, float targetVolume)
@@ -121,4 +123,68 @@ public class SoundManager:MonoBehaviour
         }
         EffectSource.PlayOneShot(clip);
     }
+
+    [SerializeField]
+    private AudioSource SubEffectSource;
+    bool isPause=false;
+    float currentTime;
+    bool IsPause { get => isPause; set {
+            isPause = value;
+            if (isPause )
+                SubEffectSource.volume = 0.0f;
+            else
+                SubEffectSource.volume = 1.0f;
+        } }
+
+    //isPlay 만 false주면 팝업중 잠시 멈추기, isPlay false와 duration 0이면 아에 초기화
+    //isPlay 만 true주면 팝업없애고 남은소리 재생
+    public void SetSubEffect(bool isPlay , float duration=-1 , AudioClip clip=null )
+    {
+        if (isSFXMuted == true)
+        {
+            SubEffectSource.volume = 0.0f;
+        }
+        else
+        {
+            SubEffectSource.volume = 1.0f;
+        }
+        if (isPlay)
+        {
+            if (clip == null )
+            {
+                IsPause = false;                
+            }
+            else
+            {
+                SubEffectSource.clip = clip;
+                StartCoroutine(PlayAudio(duration));
+            }
+        }
+        else if(duration < 0)
+        {
+            IsPause = true;    
+        }else
+        {
+            SubEffectSource.Stop();
+        }
+       
+
+    }
+    private IEnumerator PlayAudio(float duration)
+    {
+        currentTime = duration;
+        SubEffectSource.Play();
+        while (currentTime > 0)
+        {
+            if(!IsPause)
+                currentTime -= Time.deltaTime;            
+            yield return null;
+        }
+        SubEffectSource.Stop();
+        yield break;
+    }
+
+    
+
+
 }
