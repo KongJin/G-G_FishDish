@@ -7,8 +7,7 @@ public class FishE : PlayableFish
 {
     Collider2D[] collisionTargets= new Collider2D[10];
     Fish target;
-    Vector3[] left = new Vector3[1] { Vector3.left };
-    Vector3[] right= new Vector3[1] { Vector3.right };
+    Vector3[] temp = new Vector3[1] ;
 
     public override int fishType => (int)Define.FishType.PLATI;
 
@@ -33,7 +32,9 @@ public class FishE : PlayableFish
             if(target==null||target.gameObject.layer==myLayer)
                 continue;
 
-            target.Move(target.direction[0].x < 0 ?  right: left, target.spec.speed);
+            temp[0] = target.direction[0] * -1;
+            target.Move(temp, target.spec.speed);
+
             target = null;
             collisionTargets[i] = null;
         }

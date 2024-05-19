@@ -27,14 +27,15 @@ public class Fish : MonoBehaviour  ,IMoveAble
         eater = EaterMaker.GetEater(this);            
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = position;
+        Vector3 AddY = Vector3.up * UnityEngine.Random.Range(-0.3f,0.3f);
         if (position.x >0)
         {
-            direction[0] =  Vector3.left ;
+            direction[0] =  Vector3.left+ AddY;
             transform.eulerAngles = new Vector3( 0, 180, 0 );
         }
         else if(position.x <0)
         {
-            direction[0] = Vector3.right;
+            direction[0] = Vector3.right+ AddY;
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
