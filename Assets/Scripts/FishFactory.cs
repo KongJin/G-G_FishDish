@@ -115,7 +115,7 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
         
         remainTime = Random.Range(Define.minFloat, MaxCreationInterval);
         Fish fish  =  Get();
-        fish.Init( GetRandomPosition(), this, new RandomSpec(curPoint*0.03f* Define.minFloat +3, fish.GetComponent<RectTransform>()), fishImgs[Random.Range(0, (int)Define.FishType.MAX)]);
+        fish.Init( GetRandomPosition(), this, new RandomSpec(curPoint*0.03f* Define.minFloat +3, fish.GetComponent<RectTransform>()), fishImgs[Random.Range(0, 15)]);
     }
 
     int curPoint;

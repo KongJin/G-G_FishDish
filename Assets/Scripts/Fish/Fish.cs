@@ -27,7 +27,7 @@ public class Fish : MonoBehaviour  ,IMoveAble
         eater = EaterMaker.GetEater(this);            
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = position;
-        Vector3 AddY = Vector3.up * UnityEngine.Random.Range(-0.3f,0.3f);
+        Vector3 AddY = Vector3.up * UnityEngine.Random.Range(-0.22f,0.22f);
         if (position.x >0)
         {
             direction[0] =  Vector3.left+ AddY;

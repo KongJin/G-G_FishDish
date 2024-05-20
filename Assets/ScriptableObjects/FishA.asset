@@ -15,10 +15,10 @@ MonoBehaviour:
   <fishName>k__BackingField: "\uAE08\uBD95\uC5B4"
   <fishDescription>k__BackingField: "\uADC0\uC5EC\uC6B4 \uD669\uAE08 \uBB3C\uACE0\uAE30\uC774\uB2E4"
   <fishSkillName>k__BackingField: "\uBB34\uC801\uC774\uB77C\uB124 \u2605"
-  <coolTime>k__BackingField: 5
+  <coolTime>k__BackingField: 4
   <coolUpgradeRatio>k__BackingField: 0.2
-  <durationTime>k__BackingField: 10
-  <duraUpgradeRatio>k__BackingField: 0.2
+  <durationTime>k__BackingField: 6
+  <duraUpgradeRatio>k__BackingField: 0.4
   <fishSprite>k__BackingField: {fileID: 21300000, guid: 6c70a102720106543a8b08ca87c6893a, type: 3}
   <skillOnSprite>k__BackingField: {fileID: 21300000, guid: 563f715f129bf8c4aa95e709a0dc51f2, type: 3}
   <skillOffSprite>k__BackingField: {fileID: 21300000, guid: 9270de5c5dd451546844b978a6c86635, type: 3}
