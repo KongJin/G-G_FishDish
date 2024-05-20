@@ -28,14 +28,16 @@ public class Player : MonoBehaviour
     {
         GameManager.Sound.NowTapIndex = 1;
         GameManager.Sound.PlayBGM(GameManager.Resources.GetClip(ResourcesManager.SoundType.BGM, GameManager.Sound.NowTapIndex));
+        JoyStickPos();
     }
+    Vector3 changePos = new Vector3(0,125,0);
+
 
     public void JoyStickPos()
     {
         RectTransform skillPos = skillUI.gameObject.GetComponent<RectTransform>();
         RectTransform joystickPos = joystickUI.gameObject.GetComponent<RectTransform>();
 
-        Vector3 changePos = joystickPos.anchoredPosition;
         if (GameManager.Data.NowJoystick == true) // true = 조이스틱 오른쪽, false = 왼쪽이 되어야합니다.
         {
             skillPos.anchorMin = Vector2.zero;
@@ -62,6 +64,5 @@ public class Player : MonoBehaviour
             changePos.x = -125.0f;
             skillPos.anchoredPosition = changePos;
         }
-        joystickUI.SetJoyStickPos();
     }
 }

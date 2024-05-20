@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class FishD : PlayableFish
@@ -26,12 +27,13 @@ public class FishD : PlayableFish
 
     protected override void SkillEffect()
     {
-        eater = skillEfect;
-        rectTransform.localEulerAngles += Vector3.back*5;
+        eater = skillEfect;        
+        rectTransform.localEulerAngles += Vector3.back*50;
+
     }
 
     public override string GetDescription(float coolLevel, float duraLevel)
     {
-        return $"꼬리를 휘둘러 {fishData.durationTime + duraLevel * fishData.duraUpgradeRatio}초간 30% 더큰 물고기를 섭취할수있게 됩니다. ( 쿨타임 {fishData.coolTime - coolLevel * fishData.coolUpgradeRatio}초 )";
+        return $"<color=#80FF80>{fishData.durationTime + duraLevel * fishData.duraUpgradeRatio}초</color> 동안 30% 더큰 물고기를 섭취합니다. ( 쿨타임 <color=#FF8080>{fishData.coolTime - coolLevel * fishData.coolUpgradeRatio}초</color> )";
     }
 }
