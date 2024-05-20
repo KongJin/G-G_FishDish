@@ -26,15 +26,17 @@ public class SkillEffecter : MonoBehaviour
     {
         fishTransform = _fishTransform;
         barTransfrom= skillDuration.GetComponent<Transform>();
-        gameObject.SetActive(false);
+
 
         fishData = _fishData;
         skillSpriteImage.sprite = fishData.skillEffectSprite;
-        skillAnimImage.sprite = fishData.skillEffectAnim[0]?? fishData.skillEffectSprite;
+        skillAnimImage.sprite = fishData.skillEffectAnim[0];
 
         skillAnimImage.SetNativeSize();
         skillSpriteImage.SetNativeSize();
 
+        transform.localPosition = fishData.skillpos;
+        gameObject.SetActive(false);
     }
 
     public void SetSkill(float ratio)

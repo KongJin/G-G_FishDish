@@ -17,7 +17,7 @@ MonoBehaviour:
   <fishSkillName>k__BackingField: "\uC810\uC218\uB97C \uBAA8\uC544\uBAA8\uC544 !"
   <coolTime>k__BackingField: 5
   <coolUpgradeRatio>k__BackingField: 0.3
-  <durationTime>k__BackingField: 4
+  <durationTime>k__BackingField: 2
   <duraUpgradeRatio>k__BackingField: 0.2
   <fishSprite>k__BackingField: {fileID: 21300000, guid: b013b0b70dd733e46b9eab887073d3bf, type: 3}
   <skillOnSprite>k__BackingField: {fileID: 21300000, guid: 3940b1d539fc4074da090fb41b3ccb19, type: 3}
@@ -28,3 +28,4 @@ MonoBehaviour:
   <skillEffectAnim>k__BackingField:
   - {fileID: 21300000, guid: 020659b1539d3964291339d7504a27bf, type: 3}
   <clip>k__BackingField: {fileID: 8300000, guid: 1c3af64e144bbc24c83d1d8ced17d159, type: 3}
+  <skillpos>k__BackingField: {x: -3.5, y: -2.5, z: 0}
