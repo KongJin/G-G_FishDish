@@ -42,7 +42,7 @@ public class UpgradePopup : MonoBehaviour
                 levels[i].text = $"MAX";
             }
         }
-        costTMP.text = $"비용 : {cost}";
+        costTMP.text = $"Cost : {cost}";
         costTMP.gameObject.SetActive(level < Define.maxUpgrade);
         confirm.gameObject.SetActive(level < Define.maxUpgrade);
         gameObject.SetActive(true);
