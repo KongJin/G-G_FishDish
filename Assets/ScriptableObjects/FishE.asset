@@ -17,8 +17,8 @@ MonoBehaviour:
   <fishSkillName>k__BackingField: 
   <coolTime>k__BackingField: 7
   <coolUpgradeRatio>k__BackingField: 0.5
-  <durationTime>k__BackingField: 6
-  <duraUpgradeRatio>k__BackingField: 0.3
+  <durationTime>k__BackingField: 3
+  <duraUpgradeRatio>k__BackingField: 0.5
   <fishSprite>k__BackingField: {fileID: 21300000, guid: 07a6fa5d411371f499396e9a63e31bfd, type: 3}
   <skillOnSprite>k__BackingField: {fileID: 21300000, guid: 919d11261795bdf49adc0b1d5d010131, type: 3}
   <skillOffSprite>k__BackingField: {fileID: 21300000, guid: b861296bcc11f2245ada0b22b90cf15a, type: 3}
@@ -33,3 +33,4 @@ MonoBehaviour:
   - {fileID: -155935372, guid: 9cfe327b2b33394439131f84553d36d5, type: 3}
   - {fileID: -649484108, guid: 9cfe327b2b33394439131f84553d36d5, type: 3}
   <clip>k__BackingField: {fileID: 8300000, guid: 5019c7bb24a3ff44289ba0b481f0ac98, type: 3}
+  <skillpos>k__BackingField: {x: 0, y: 0, z: 0}
