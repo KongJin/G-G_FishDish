@@ -73,6 +73,7 @@ public class ShowWindow : MonoBehaviour
 
         startTime = Time.time;
         int liftingScore = fishes[curIndex].fishData.liftingScore;
+        fishName.text = fishes[curIndex].fishData.fishName;
         for (int i =0;i < curIndex; i++)
         {
             if(liftingScore > GameManager.Data.GetHighScore(i))

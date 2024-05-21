@@ -22,7 +22,7 @@ MonoBehaviour:
   <fishSprite>k__BackingField: {fileID: 21300000, guid: 07a6fa5d411371f499396e9a63e31bfd, type: 3}
   <skillOnSprite>k__BackingField: {fileID: 21300000, guid: 919d11261795bdf49adc0b1d5d010131, type: 3}
   <skillOffSprite>k__BackingField: {fileID: 21300000, guid: b861296bcc11f2245ada0b22b90cf15a, type: 3}
-  <liftingScore>k__BackingField: 25
+  <liftingScore>k__BackingField: 600
   <dieSprite>k__BackingField: {fileID: 21300000, guid: 2a39a89dc1b4bcc499f615481bfdad99, type: 3}
   <skillEffectSprite>k__BackingField: {fileID: 1519937551, guid: 9cfe327b2b33394439131f84553d36d5, type: 3}
   <skillEffectAnim>k__BackingField:
