@@ -51,7 +51,7 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             if(ratio > 0.1f)
                 ratio -= Time.deltaTime;
-            point -= point * Time.deltaTime;
+            point -= point * Time.deltaTime*2;
         }
 
         SetPoint();
@@ -63,6 +63,8 @@ public class UI_Joystick  :MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             point = point.normalized*2;
         else
             point += moveDir * ratio * Time.deltaTime * 3;
+        if(point.magnitude>1.5f)
+            point = point.normalized*1.5f;
         float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
         arrow.SetArrow(angle, ratio);
         fishPoint[0] = point;
