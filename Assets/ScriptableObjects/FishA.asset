@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: FishA
   m_EditorClassIdentifier: 
   <fishName>k__BackingField: "\uAE08\uBD95\uC5B4"
-  <fishDescription>k__BackingField: "\uADC0\uC5EC\uC6B4 \uD669\uAE08 \uBB3C\uACE0\uAE30\uC774\uB2E4"
+  <fishDescription>k__BackingField: "\uAC00\uB054 \uBAB8\uC774 \uBE5B\uB098\uB294
+    \uADC0\uC5EC\uC6B4 \uBB3C\uACE0\uAE30\uC774\uB2E4"
   <fishSkillName>k__BackingField: "\uBB34\uC801\uC774\uB77C\uB124 \u2605"
   <coolTime>k__BackingField: 8
   <coolUpgradeRatio>k__BackingField: 0.5

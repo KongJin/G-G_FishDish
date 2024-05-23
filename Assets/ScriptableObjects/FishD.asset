@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FishD
   m_EditorClassIdentifier: 
   <fishName>k__BackingField: "\uC18C\uB4DC\uD14C\uC77C"
-  <fishDescription>k__BackingField: "\uC18C\uB4DC\uB9C8\uC2A4\uD130"
-  <fishSkillName>k__BackingField: 
+  <fishDescription>k__BackingField: "\uB0A0\uCE74\uB85C\uC6B4 \uAF2C\uB9AC\uB85C
+    \uBC14\uB2E4\uB97C \uB204\uBE44\uB294 \uBB3C\uACE0\uAE30\uC774\uB2E4"
+  <fishSkillName>k__BackingField: "\uBE59\uAE00\uBE59\uAE00 \u266A"
   <coolTime>k__BackingField: 8
   <coolUpgradeRatio>k__BackingField: 0.5
   <durationTime>k__BackingField: 3

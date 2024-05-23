@@ -14,8 +14,8 @@ public class UI_GameOver : UI_Puase
 
     public void ShowGameOver(int _cur, int _high, Sprite sprite)
     {
-        cur.text = _cur.ToString();
-        high.text = _high.ToString();
+        cur.text = _cur.ToString("N0");
+        high.text = _high.ToString("N0");
         dieImage.sprite = sprite;
         dieImage.SetNativeSize();
 

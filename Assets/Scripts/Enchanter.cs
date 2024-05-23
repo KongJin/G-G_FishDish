@@ -40,7 +40,7 @@ class Enchanter:MonoBehaviour
         }
         upgradeCost = new int[11] { 50, 100, 150,200,300,450,650,950,1400,2000,3000 };
 
-        Money.text = GameManager.Data.Money.ToString();
+        Money.text = GameManager.Data.Money.ToString("N0");
 
     }
 
@@ -63,7 +63,7 @@ class Enchanter:MonoBehaviour
 
             levelTexts[i].text = temp;
         }
-        Money.text = GameManager.Data.Money.ToString();
+        Money.text = GameManager.Data.Money.ToString("N0");
 
         fishSkillDescription.text = _fish.GetDescription(GetEnchant(0, fish.fishType), GetEnchant(1, fish.fishType));
 
@@ -93,7 +93,7 @@ class Enchanter:MonoBehaviour
         GameManager.Data.ChangeMoney(-GetCost());
 
         Enchant();
-        Money.text = GameManager.Data.Money.ToString();
+        Money.text = GameManager.Data.Money.ToString("N0");
         OpenPopup(enchantType);
         SetFish(fish);
         GameManager.Sound.PlayEffect(GameManager.Resources.GetClip(ResourcesManager.SoundType.Effect, (int)ResourcesManager.EffectClip.buy));

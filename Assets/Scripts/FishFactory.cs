@@ -124,9 +124,9 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
         int addPoint = (int)(size * 10);
         curPoint += addPoint;
         GameManager.Data.ChangeMoney(addPoint);
-        pointUI.text = curPoint.ToString();
+        pointUI.text = curPoint.ToString("N0");
         GameManager.Data.SetHighScore(curPoint, obj.fishType);
-        goldText.text = GameManager.Data.Money.ToString();
+        goldText.text = GameManager.Data.Money.ToString("N0");
 
     }
 

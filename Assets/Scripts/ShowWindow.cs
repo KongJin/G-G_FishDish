@@ -73,7 +73,6 @@ public class ShowWindow : MonoBehaviour
 
         startTime = Time.time;
         int liftingScore = fishes[curIndex].fishData.liftingScore;
-        fishName.text = fishes[curIndex].fishData.fishName;
         for (int i =0;i < curIndex; i++)
         {
             if(liftingScore > GameManager.Data.GetHighScore(i))
@@ -81,14 +80,15 @@ public class ShowWindow : MonoBehaviour
                 blind.SetActive(true);
                 highScoreBox.SetActive(false);
                 startButton.interactable = false;
-                blindText.text = $"앞에 있는 모든 물고기들의\n최고점수 {fishes[curIndex].fishData.liftingScore}점 이상";
+                blindText.text = $"앞에 있는 모든 물고기들의\n최고점수 {fishes[curIndex].fishData.liftingScore:N0}점 이상";
+                fishName.text = "???";
                 return;
             }
         }
         blind.SetActive(false);
         highScoreBox.SetActive(true);
         startButton.interactable = true;
-        highScore.text = GameManager.Data.GetHighScore(curIndex).ToString();
+        highScore.text = GameManager.Data.GetHighScore(curIndex).ToString("N0");
         fishName.text = fishes[curIndex].fishData.fishName;
         description.text = fishes[curIndex].fishData.fishDescription;
         fishSkillName.text = fishes[curIndex].fishData.fishSkillName;
