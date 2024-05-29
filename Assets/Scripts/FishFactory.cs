@@ -25,6 +25,8 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     TMPro.TextMeshProUGUI pointUI;
     [SerializeField]
     TMPro.TextMeshProUGUI goldText;
+    [SerializeField]
+    TMPro.TextMeshProUGUI pauseGoldText;
 
     [SerializeField]
     Sprite[] fishImgs;
@@ -102,6 +104,7 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
     void Start()
     {
         goldText.text = GameManager.Data.Money.ToString();
+        pauseGoldText.text = GameManager.Data.Money.ToString();
     }
 
     // Update is called once per frame
@@ -127,7 +130,7 @@ public class FishFactory : MonoBehaviour, IFishPool, IPointAdder
         pointUI.text = curPoint.ToString("N0");
         GameManager.Data.SetHighScore(curPoint, obj.fishType);
         goldText.text = GameManager.Data.Money.ToString("N0");
-
+        pauseGoldText.text = GameManager.Data.Money.ToString("N0");
     }
 
 

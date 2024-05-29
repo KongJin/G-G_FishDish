@@ -34,6 +34,6 @@ public class FishD : PlayableFish
 
     public override string GetDescription(float coolLevel, float duraLevel)
     {
-        return $"<color=#80FF80>{fishData.durationTime + duraLevel * fishData.duraUpgradeRatio}초</color> 동안 30% 더큰 물고기를 섭취합니다. ( 쿨타임 <color=#FF8080>{fishData.coolTime - coolLevel * fishData.coolUpgradeRatio}초</color> )";
+        return $"<color=#80FF80>{fishData.durationTime + duraLevel * fishData.duraUpgradeRatio}초</color> 동안 30% 큰 물고기까지 먹을 수 있습니다. ( 쿨타임 <color=#FF8080>{fishData.coolTime - coolLevel * fishData.coolUpgradeRatio}초</color> )";
     }
 }
