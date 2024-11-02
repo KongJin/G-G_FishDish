@@ -16,6 +16,8 @@ MonoBehaviour:
   <fishDescription>k__BackingField: "\uB098\uB294\uC57C \uC2DC\uAC04\uC758 \uB9C8\uC220\uC0AC
     !"
   <fishSkillName>k__BackingField: "\uC2DC\uAC04\uC544 \uBA48\uCDB0\uB77C !!"
+  <fishSkillDescription>k__BackingField: "\uC9C0\uC18D\uC2DC\uAC04 \uB3D9\uC548 \uC8FC\uBCC0
+    \uBB3C\uACE0\uAE30\uB97C \uBA48\uCDA5\uB2C8\uB2E4."
   <coolTime>k__BackingField: 12
   <coolUpgradeRatio>k__BackingField: 0.5
   <durationTime>k__BackingField: 3

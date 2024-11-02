@@ -416,7 +416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2947622291749339524, guid: defde2e08ab754f4ca4204a72b965b98, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7406730650772923488, guid: defde2e08ab754f4ca4204a72b965b98, type: 3}
       propertyPath: m_Pivot.x
@@ -3296,7 +3296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 35, y: 0}
   m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &275773188
@@ -3372,7 +3372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 35, y: 0}
   m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295418511
@@ -5730,6 +5730,7 @@ GameObject:
   - component: {fileID: 557979271}
   - component: {fileID: 557979273}
   - component: {fileID: 557979272}
+  - component: {fileID: 557979274}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -5795,6 +5796,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557979270}
   m_CullTransparentMesh: 1
+--- !u!114 &557979274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557979270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294e2226a0a3738418e828515e1b57bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectFishNum: {fileID: 1659924756}
 --- !u!1 &592944376
 GameObject:
   m_ObjectHideFlags: 0
@@ -8544,6 +8558,7 @@ MonoBehaviour:
   fishName: {fileID: 354081374}
   description: {fileID: 168067553}
   fishSkillName: {fileID: 1684026611}
+  fishSkillDescription: {fileID: 1894583134}
   fishes:
   - {fileID: 660109758214933965, guid: 98efa2f3e3ee68c48898501b9850e9eb, type: 3}
   - {fileID: 1340687366456848324, guid: 3cac0ebd04e69654e944f0e3b2258d47, type: 3}
@@ -8556,7 +8571,9 @@ MonoBehaviour:
   yellowLine: {fileID: 157487201}
   blind: {fileID: 937511607}
   blindText: {fileID: 167295229}
+  selectFishNumUI: {fileID: 557979274}
   enchanter: {fileID: 1229632195}
+  fishSkillImage: {fileID: 97789296}
 --- !u!1 &937511607
 GameObject:
   m_ObjectHideFlags: 0
@@ -8592,8 +8609,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.45001, y: -137}
-  m_SizeDelta: {x: 670, y: 400}
+  m_AnchoredPosition: {x: 0.45001, y: -173.5}
+  m_SizeDelta: {x: 670, y: 470}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &950169512
 GameObject:
@@ -10058,7 +10075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1146525871
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10575,13 +10592,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa82e37d08c2cf458eb284d9a0cedd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img:
-  - {fileID: 0}
-  - {fileID: 0}
+  sprites:
+  - {fileID: 21300000, guid: 745dd7a3b7e051b46856ec43759cf543, type: 3}
+  - {fileID: 21300000, guid: 9363ff52af08e054484ecdd9c747a37e, type: 3}
+  iconImage: {fileID: 517789159}
+  titleText: {fileID: 737678554}
   levels:
   - {fileID: 6568686}
   - {fileID: 523860615}
-  textMeshPro: {fileID: 716903255}
+  descriptTexts:
+  - {fileID: 530203513}
+  - {fileID: 716903255}
   confirm: {fileID: 726690309}
   costTMP: {fileID: 439502749}
 --- !u!114 &1178179793
@@ -10952,7 +10973,8 @@ MonoBehaviour:
   levelTexts:
   - {fileID: 1628529404}
   - {fileID: 1345536798}
-  fishSkillDescription: {fileID: 1894583134}
+  fishSkillCooltimeDescription: {fileID: 308792838}
+  fishSkillDurationDescription: {fileID: 1868187401}
   popup: {fileID: 1178179792}
 --- !u!1 &1239259280
 GameObject:
@@ -11500,10 +11522,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2029460462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: -1.0000007}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1345536797
 CanvasRenderer:
@@ -11596,7 +11618,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 132.96121, w: 0}
+  m_margin: {x: 0, y: 1.4155407, z: -0.015594482, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -13464,10 +13486,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 238497957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: -1.0000007}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 104, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1628529404
 MonoBehaviour:
@@ -13552,7 +13574,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 132.9612, w: 0}
+  m_margin: {x: 0, y: 1.3288889, z: 0.044128418, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -14350,6 +14372,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1178179790}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1229632195}
         m_TargetAssemblyTypeName: Enchanter, Assembly-CSharp
         m_MethodName: OpenPopup
@@ -14357,7 +14391,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -15273,6 +15307,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1178179790}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1229632195}
         m_TargetAssemblyTypeName: Enchanter, Assembly-CSharp
         m_MethodName: OpenPopup
@@ -16577,7 +16623,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 87.5, y: 0}
+  m_AnchoredPosition: {x: 70, y: 0}
   m_SizeDelta: {x: 165, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2046849442
@@ -17673,7 +17719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2122999680
 RectTransform:
   m_ObjectHideFlags: 0

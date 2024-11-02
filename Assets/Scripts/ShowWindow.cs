@@ -21,6 +21,9 @@ public class ShowWindow : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI fishSkillName;
 
+    [SerializeField]
+    TextMeshProUGUI fishSkillDescription;
+
     int distInterval = 600;
     float remainMove = 0;
 
@@ -45,9 +48,13 @@ public class ShowWindow : MonoBehaviour
     GameObject blind;
     [SerializeField]
     TextMeshProUGUI blindText;
+    [SerializeField]
+    UI_SelectFishNum selectFishNumUI;
 
     [SerializeField]
     Enchanter enchanter;
+    [SerializeField]
+    Image fishSkillImage;
     public void PassOver(int direction)//-1,1
     {
         int index = direction * -1;
@@ -70,6 +77,7 @@ public class ShowWindow : MonoBehaviour
         }
 
         remainMove +=  distInterval * direction;
+        selectFishNumUI.ChangeSelectFishNum(curIndex);
 
         startTime = Time.time;
         int liftingScore = fishes[curIndex].fishData.liftingScore;
@@ -81,7 +89,7 @@ public class ShowWindow : MonoBehaviour
                 highScoreBox.SetActive(false);
                 startButton.interactable = false;
                 blindText.text = $"앞에 있는 모든 물고기들의\n최고점수 {fishes[curIndex].fishData.liftingScore:N0}점 이상";
-                fishName.text = "???";
+                // fishName.text = "???";
                 return;
             }
         }
@@ -92,6 +100,8 @@ public class ShowWindow : MonoBehaviour
         fishName.text = fishes[curIndex].fishData.fishName;
         description.text = fishes[curIndex].fishData.fishDescription;
         fishSkillName.text = fishes[curIndex].fishData.fishSkillName;
+        fishSkillDescription.text = fishes[curIndex].fishData.fishSkillDescription;
+        fishSkillImage.sprite = fishes[curIndex].fishData.skillOnSprite;
         
         enchanter.SetFish( fishes[curIndex]);
 

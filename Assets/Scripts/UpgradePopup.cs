@@ -1,40 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static Enchanter;
 
 public class UpgradePopup : MonoBehaviour
 {
     [SerializeField]
-    UnityEngine.UI.Image[] img;
-    [SerializeField]
-    TMPro.TextMeshProUGUI[] levels;
+    Sprite[] sprites;
 
     [SerializeField]
-    TMPro.TextMeshProUGUI textMeshPro;
+    Image iconImage;
 
     [SerializeField]
-    UnityEngine.UI.Button confirm;
+    TextMeshProUGUI titleText;
 
     [SerializeField]
-    TMPro.TextMeshProUGUI costTMP;
+    TextMeshProUGUI[] levels;
+
+    [SerializeField]
+    TextMeshProUGUI[] descriptTexts;
+
+    [SerializeField]
+    Button confirm;
+
+    [SerializeField]
+    TextMeshProUGUI costTMP;
+
     public void SetPopup(int upgradeType, FishData data, int level, int cost)
     {
-        Sprite temp;
+        iconImage.sprite = sprites[upgradeType];
+        titleText.text = upgradeType == 0 ? "집중" : "인내";
+
         if (upgradeType == (int)EnchantType.cool)
         {
-            temp = data.skillOffSprite;
-            textMeshPro.text = $"스킬의 쿨타임이 {level * data.coolUpgradeRatio}초" + (level < Define.maxUpgrade ? $"-> {(level + 1) * data.coolUpgradeRatio}초" : "") + " 감소 합니다.";
+            descriptTexts[0].text = $"스킬의 쿨타임이 {level * data.coolUpgradeRatio}초" + " 감소 합니다.";
+            descriptTexts[1].text = $"스킬의 쿨타임이 {level * data.coolUpgradeRatio}초" + (level < Define.maxUpgrade ? $"-> {(level + 1) * data.coolUpgradeRatio}초" : "") + " 감소 합니다.";
         }
-        else
+        else if (upgradeType == (int)EnchantType.duration)
         {
-            temp = data.skillOnSprite;
-            textMeshPro.text = $"스킬의 지속시간이 {level * data.duraUpgradeRatio}초" + (level < Define.maxUpgrade ? $"-> {(level + 1) * data.duraUpgradeRatio}초" : "") + " 증가 합니다.";
-
+            descriptTexts[0].text = $"스킬의 지속시간이 {level * data.duraUpgradeRatio}초" + " 증가 합니다.";
+            descriptTexts[1].text = $"스킬의 지속시간이 {level * data.duraUpgradeRatio}초" + (level < Define.maxUpgrade ? $"-> {(level + 1) * data.duraUpgradeRatio}초" : "") + " 증가 합니다.";
         }
         for (int i = 0; i < 2; i++)
         {
-            img[i].sprite = data.skillOnSprite;
+            // sprites[i] = data.skillOnSprite;
             levels[i].text = $"Level {level+1 + i}";
 
             if (level+i>=Define.maxUpgrade)
@@ -42,9 +53,17 @@ public class UpgradePopup : MonoBehaviour
                 levels[i].text = $"MAX";
             }
         }
-        costTMP.text = $"Cost : {cost}";
-        costTMP.gameObject.SetActive(level < Define.maxUpgrade);
-        confirm.gameObject.SetActive(level < Define.maxUpgrade);
+
+        if(cost > GameManager.Data.Money)
+        {
+            confirm.interactable = false;
+        }
+        else
+        {
+            confirm.interactable = level < Define.maxUpgrade;
+        }
+        
+        costTMP.text = level < Define.maxUpgrade ? $"Cost : {cost}" : " --   ";
         gameObject.SetActive(true);
     }
 }

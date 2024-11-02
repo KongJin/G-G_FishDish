@@ -49,7 +49,10 @@ class Enchanter:MonoBehaviour
     
 
     [SerializeField]
-    TextMeshProUGUI fishSkillDescription;
+    TextMeshProUGUI fishSkillCooltimeDescription;
+
+    [SerializeField]
+    TextMeshProUGUI fishSkillDurationDescription;
     PlayableFish fish;
     public void SetFish(PlayableFish _fish)
     {
@@ -58,14 +61,16 @@ class Enchanter:MonoBehaviour
         {
             int level = enchantLevels[i][fish.fishType];
 
-            string temp= "Level ";
-            temp += level == maxUpgrade ? "MAX" : level + 1;
+            // string temp= "Level ";
+            string temp = "";
+            temp += level == maxUpgrade ? "MAX" : $"{level + 1}  /  11";
 
             levelTexts[i].text = temp;
         }
         Money.text = GameManager.Data.Money.ToString("N0");
 
-        fishSkillDescription.text = _fish.GetDescription(GetEnchant(0, fish.fishType), GetEnchant(1, fish.fishType));
+        fishSkillCooltimeDescription.text = _fish.GetCooltimeDescription(GetEnchant(0, fish.fishType));
+        fishSkillDurationDescription.text = _fish.GetDurationDescription(GetEnchant(1, fish.fishType));
 
     }
     int[] upgradeCost;
